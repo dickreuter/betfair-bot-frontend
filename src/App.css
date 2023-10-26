@@ -1,0 +1,170 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 1em;
+  min-height: 30em;
+  min-width: 10em;
+}
+
+.card:hover {
+  background-color: blue;
+  color: white; /* Changing the text color to white for better visibility on blue background */
+  transition: background-color .5s ease; /* Smooth transition effect */
+}
+
+.titleimage {
+  display: flex;
+  flex-direction: column;
+}
+
+.items li {
+  text-align: left;
+  font-size: .8em;
+}
+
+.items li input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+.barchart {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontally centered */
+  justify-content: center; /* vertically centered */
+  min-height: 100vh; /* or adjust as previously suggested */
+  margin-top: 3em;
+}
+
+.dropdowns-container {
+  display: flex;
+  justify-content: center; /* centers the dropdowns horizontally */
+  gap: 10px; /* provides spacing between dropdowns */
+}
+
+.tablechart {
+  padding-top: 3em;
+}
+.custom-card-size {
+  max-width: 15em;
+  /* optionally, you can also set a max-height if needed */
+  /* max-height: 400px; */
+}
+
+/* Changes the color of the link on hover */
+.nav-link:hover {
+  color: #007BFF;  /* Blue color, can be replaced with any other color */
+  text-decoration: none;  /* Removes the underline which is usually there by default on hover */
+  transition: color 0.5s ease;  /* Smooth transition effect */
+}
+
+/* Adds an underline effect on hover */
+.nav-item:hover .nav-link::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #007BFF;  /* Blue color, can be replaced with any other color */
+  transition: width 0.3s ease;
+}
+
+/* Changes the background color on hover */
+.nav-item:hover {
+  background-color: #f8f9fa;  /* Light grey, can be replaced with any other color */
+  transition: background-color 0.3s ease;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg) scale(.7);
+  }
+  to {
+    transform: rotate(360deg) scale(.7);
+  }
+}
+
+.rotating {
+  animation: spin 2s linear infinite;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+.custom-tooltip {
+  background-color: #f9f9f9;
+  padding: 10px 15px;
+  font-size: 14px;
+  max-width: 300px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+.tooltip-table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.tooltip-table td {
+  padding: 5px 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.tooltip-table tr:first-child td {
+  border-top: none;
+}
+
+.tooltip-table tr:last-child td {
+  border-bottom: none;
+}
+
+.tooltip-table tr td:first-child {
+  border-left: none;
+}
+
+.tooltip-table tr td:last-child {
+  border-right: none;
+}
+
+.h1 {
+  padding-top: 1em;
+  font-size: 1.5em;
+  margin: 0.67em 0;
+}
+
+.raceTitle {
+  padding-top: 1em;
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+
+.fundsTable{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}

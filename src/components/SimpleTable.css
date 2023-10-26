@@ -1,0 +1,21 @@
+/* Styles.css */
+
+.table-container {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px; /* You can adjust max-width to fit your design */
+    margin: 0 auto; /* Centering table */
+}
+
+.table-container th, .table-container td {
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 1px;
+    border-bottom: 1px solid #ddd; /* Adding light border */
+    font-size: 10px; /* Adjusting font size */
+    white-space: nowrap;
+}
+
+.table-container th {
+    background-color: #f2f2f2; /* Adding light background color to headers */
+}

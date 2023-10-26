@@ -1,0 +1,29 @@
+.tabulator {
+  font-size: 8px;
+  
+}
+
+.react-tabulator .tabulator-tableHolder .tabulator-row .tabulator-cell {
+  font-size: 8px !important;
+}
+
+
+.table-wrapper .tabulator-footer {
+  text-align: center !important;
+}
+
+.pivot {
+  font-size: 70%;
+}
+
+.funds {
+  font-size: 70%;
+}
+.funds td {
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.custom-cell-style {
+  font-size: 8px !important;
+}

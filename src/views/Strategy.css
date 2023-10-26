@@ -1,0 +1,111 @@
+.strategy-form {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.strategy-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.strategy-form div {
+  margin: 10px 0;
+}
+
+.strategy-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.strategy-form select,
+.strategy-form input[type="text"],
+.strategy-form input[type="radio"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.strategy-form select[multiple] {
+  height: 120px;
+}
+
+.strategy-form input[type="radio"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+.strategy-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.strategy-form button:hover {
+  background-color: #0056b3;
+}
+
+.load-strategy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.load-strategy select,
+.load-strategy button {
+  width: 48%; /* Makes them sit side by side with a small gap */
+}
+
+.timeSlider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.radio-boxes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.selection-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selections {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sport-type {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

@@ -1,0 +1,24 @@
+.linechart {
+    display: flex;
+    justify-content: center;
+}
+
+.strategy-status {
+    font-size: 10px;
+}
+
+.strategy-status ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    line-height: 1.2;  /* Adjust this */
+}
+
+.strategy-status li {
+    margin: 0;  /* Set margin to zero */
+    padding: 0; /* Set padding to zero */
+}
+
+.strategy-status span.bold {
+    font-weight: bold;
+}
