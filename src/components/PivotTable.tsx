@@ -38,7 +38,10 @@ const PivotTable = ({ endpoint }) => {
       rowOrder,
       rows,
       vals,
-      // ... any other attributes you want to save
+      valueFilter,
+      sorters,
+      tableOptions,
+
     } = fullState;
     return {
       aggregatorName,
@@ -48,7 +51,9 @@ const PivotTable = ({ endpoint }) => {
       rowOrder,
       rows,
       vals,
-      // ...
+      valueFilter,
+      sorters,
+      tableOptions,
     };
   };
 
