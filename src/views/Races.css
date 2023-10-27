@@ -75,3 +75,7 @@
     animation: flash .4s;
   }
   
+  .counter {
+    display: flex;
+    justify-content: center;
+  }
