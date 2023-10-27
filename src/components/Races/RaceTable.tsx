@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
-import { CustomTooltip } from '../CustomTooltip';
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 
@@ -24,7 +22,30 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             [lineName]: !linesVisibility[lineName],
         });
     };
+    const [flashingCells, setFlashingCells] = useState({});
+
     useEffect(() => {
+        // Your existing logic
+        const newFlashingCells = {};
+
+        horseData.forEach((horse, index) => {
+            ['back', 'lay', 'last'].forEach((field) => {
+                if (isValueChanged(horse.data[field], prevHorseData[index]?.data[field])) {
+                    newFlashingCells[`${index}_${field}`] = true;
+
+                    // Remove 'flash' class after 1 second
+                    setTimeout(() => {
+                        setFlashingCells((prevFlashingCells) => {
+                            const updated = { ...prevFlashingCells };
+                            delete updated[`${index}_${field}`];
+                            return updated;
+                        });
+                    }, 1000);
+                }
+            });
+        });
+
+        setFlashingCells(newFlashingCells);
         setPrevHorseData(horseData);
     }, [horseData]);
 
@@ -100,12 +121,9 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                     {horseData.map((horse, index) => (
                         <tr key={index}>
                             <td title={horse.horseId}>{horse.horseId}</td>
-                            <td className={isValueChanged(horse.data.back, prevHorseData[index]?.data.back) ? 'flash' : ''}
-                                title={horse.data.back}>{horse.data.back}</td>
-                            <td className={isValueChanged(horse.data.lay, prevHorseData[index]?.data.lay) ? 'flash' : ''}
-                                title={horse.data.lay}>{horse.data.lay}</td>
-                            <td className={isValueChanged(horse.data.last, prevHorseData[index]?.data.last) ? 'flash' : ''}
-                                title={horse.data.last}>{horse.data.last}</td>
+                            <td className={flashingCells[`${index}_back`] ? 'flash' : ''} title={horse.data.back}>{horse.data.back}</td>
+                            <td className={flashingCells[`${index}_lay`] ? 'flash' : ''} title={horse.data.lay}>{horse.data.lay}</td>
+                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''} title={horse.data.last}>{horse.data.last}</td>
                         </tr>
                     ))}
                 </tbody>
