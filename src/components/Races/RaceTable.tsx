@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Display } from 'react-7-segment-display';
 import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
@@ -99,15 +100,17 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     let hours = Math.floor(totalSeconds / 3600);
     let minutes = Math.floor((totalSeconds % 3600) / 60);
     let seconds = totalSeconds % 60;
-
+    const value = sign + hours + minutes + seconds
     return (
         <div>
             <div className="raceTitle">{raceTitle}</div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
-            <p>
-                {sign}{hours}h {minutes}m {seconds}s
-            </p>
+
+            <div className="counter">
+                <Display count="4" height="30" value={totalSeconds} />
+            </div>
+
             <table className="funTable">
                 <thead>
                     <tr>
