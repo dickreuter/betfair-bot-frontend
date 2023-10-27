@@ -22,3 +22,52 @@
 .strategy-status span.bold {
     font-weight: bold;
 }
+
+
+
+.funTable {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 12px;
+    text-align: left;
+  }
+  
+  .funTable th,
+  .funTable td {
+    padding: 12px 15px;
+  }
+  
+  .funTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #f3f3f3;
+  }
+  
+  .funTable tbody tr:nth-of-type(even) {
+    background-color: #f3e5f5;
+  }
+  
+  .funTable tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .funTable thead {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .flash {
+    background-color: #ffc107;
+    transition: background-color 0.3s ease;
+  }
+  
+  @keyframes flash {
+    0%   {background-color: red;}
+    100% {background-color: transparent;}
+  }
+  
+  .flash {
+    animation: flash 1s;
+  }
+  
