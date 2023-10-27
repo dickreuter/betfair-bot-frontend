@@ -31,11 +31,15 @@
     margin: 25px 0;
     font-size: 12px;
     text-align: left;
+
+    margin-left: auto;
+    margin-right: auto;
   }
   
-  .funTable th,
-  .funTable td {
-    padding: 12px 15px;
+  .funTable th, .funTable td {
+    height: 20px;  /* Adjust the height */
+    padding: 0px 20px;  /* Adjust the padding */
+    text-align: center;  /* Align the text to the center */
   }
   
   .funTable tbody tr {
@@ -68,6 +72,6 @@
   }
   
   .flash {
-    animation: flash 1s;
+    animation: flash .4s;
   }
   

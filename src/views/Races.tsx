@@ -164,10 +164,10 @@ const RaceStreamer: React.FC = () => {
   return (
     <div>
       <div className="dropdown-container" style={{ textAlign: "center", marginTop:"50px" }}>
-        <label>Select Template: </label>
+        <label>Select view: </label>
         <select onChange={handleTemplateChange} value={templateType}>
-          <option value="template2">Chart view</option>
-          <option value="template1">Table view</option>
+          <option value="template2">Chart</option>
+          <option value="template1">Table</option>
         </select>
       </div>
       <div className='fundsTable'>
