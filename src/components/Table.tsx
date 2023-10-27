@@ -38,12 +38,26 @@ const Table = ({ endpoint }: { endpoint: string }) => {
       data.some(row => row[key] !== null && row[key] !== undefined)
     ) : [];
 
+    const outcomeFormatter = (cell: any, formatterParams: any, onRendered: any) => {
+      const value = cell.getValue();
+      
+      // Set the background color based on the value
+      if (value === 'WON') {
+        cell.getRow().getElement().style.backgroundColor = 'lightgreen';
+      } else if (value === 'LOST') {
+        cell.getRow().getElement().style.backgroundColor = 'pink'; // Using pink as a light red substitute
+      }
+    
+      // Return the cell value so it gets displayed
+      return value;
+    };
+
     const columns = nonEmptyColumns.map((key) => ({
       title: key,
       field: key,
       sorter: 'string',
       headerFilter: 'input',
-      formatter: "html",
+      formatter: key === 'bet_outcome' ? outcomeFormatter : null,
       formatterParams: {
           target: "_blank",
       },
