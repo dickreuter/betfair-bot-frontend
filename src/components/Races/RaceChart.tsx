@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { RaceProps } from '../helper/Types'; // Assuming you will create this types file
-import { CustomTooltip } from './CustomTooltip';
-import '../views/Races.css';
-import { OverrunComponent } from './Overrun';
+import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
+import { CustomTooltip } from '../CustomTooltip';
+import '../../views/Races.css';
+import { OverrunComponent } from '../Overrun';
 
 export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus }) => {
     const [linesVisibility, setLinesVisibility] = useState({

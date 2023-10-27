@@ -13,3 +13,4 @@
 package-lock.json
 .pytest_cache
 *.code-workspace
+.env.development

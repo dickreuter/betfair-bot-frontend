@@ -3,10 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../App.css';
 import Funds from '../components/Funds';
 import OpenOrdersTable from '../components/OpenOrdersTable';
-import { RaceChart } from '../components/RaceChart';
+import { RaceChart } from '../components/Races/RaceChart';
 import { API_URL } from '../helper/Constants';
 import { RaceData } from '../helper/Types';
 import { useAuthUser } from 'react-auth-kit';
+import { RaceTable } from '../components/Races/RaceTable';
 
 const MAX_RETRIES = 999999;
 // const auth = useAuthUser();
@@ -18,8 +19,10 @@ const RaceStreamer: React.FC = () => {
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
-
-
+  const [templateType, setTemplateType] = useState("template2");
+  const handleTemplateChange = (event) => {
+    setTemplateType(event.target.value);
+  };
 
   let retryCount = 0;
 
@@ -160,6 +163,13 @@ const RaceStreamer: React.FC = () => {
 
   return (
     <div>
+      <div className="dropdown-container" style={{ textAlign: "center", marginTop:"50px" }}>
+        <label>Select Template: </label>
+        <select onChange={handleTemplateChange} value={templateType}>
+          <option value="template2">Chart view</option>
+          <option value="template1">Table view</option>
+        </select>
+      </div>
       <div className='fundsTable'>
         <Funds />
       </div>
@@ -169,22 +179,43 @@ const RaceStreamer: React.FC = () => {
           <CircularProgress />
         </div>
       ) : (
-        raceData.map((race) => (
-          <>
-            <RaceChart
-              key={race.raceId}
-              raceId={race.raceId}
-              raceTitle={race.raceTitle}
-              horseData={race.horseData}
-              overrunBack={race.overrunBack}
-              overrunLay={race.overrunLay}
-              overrunLast={race.overrunLast}
-              secondsToStart={race.secondsToStart}
-              strategyStatus={race.strategyStatus}
-            />
-            <OpenOrdersTable data={race.orders} />
-          </>
-        ))
+        templateType === "template1" ? (
+          <div className="container-fluid">
+            <div className="row">
+              {raceData.map((race) => (
+                <div className="col-md-4" key={race.raceId}>
+                  <RaceTable 
+                    raceId={race.raceId}
+                    raceTitle={race.raceTitle}
+                    horseData={race.horseData}
+                    overrunBack={race.overrunBack}
+                    overrunLay={race.overrunLay}
+                    overrunLast={race.overrunLast}
+                    secondsToStart={race.secondsToStart}
+                    strategyStatus={race.strategyStatus}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          raceData.map((race) => (
+            <>
+              <RaceChart
+                key={race.raceId}
+                raceId={race.raceId}
+                raceTitle={race.raceTitle}
+                horseData={race.horseData}
+                overrunBack={race.overrunBack}
+                overrunLay={race.overrunLay}
+                overrunLast={race.overrunLast}
+                secondsToStart={race.secondsToStart}
+                strategyStatus={race.strategyStatus}
+              />
+              <OpenOrdersTable data={race.orders} />
+            </>
+          ))
+        )
       )}
     </div>
   );
