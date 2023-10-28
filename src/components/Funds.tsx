@@ -33,7 +33,16 @@ function Funds() {
   }
 
   useEffect(() => {
+    // Fetch balance data initially
     fetchBalanceData();
+    
+    // Set up a timer to fetch it every minute (60000 milliseconds)
+    const intervalId = setInterval(() => {
+      fetchBalanceData();
+    }, 60000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
