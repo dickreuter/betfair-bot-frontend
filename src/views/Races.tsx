@@ -72,7 +72,7 @@ const RaceStreamer: React.FC = () => {
     socket.onmessage = (event) => {
       setIsLoading(false);
       const rawData = JSON.parse(event.data);
-      console.log("WebSocket Data:", rawData);
+      // console.log("WebSocket Data:", rawData);
       let formattedData: RaceData[] = Object.entries(rawData.ff_cache).map(([raceId, horses]) => {
         let horseData: HorseData[] = Object.entries(horses)
           .filter(([key]) => !key.startsWith('_'))
