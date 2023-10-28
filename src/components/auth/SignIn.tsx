@@ -37,7 +37,7 @@ const SignInComponent = () => {
                 if (res.status === 200) {
                     if (signIn({
                         token: res.data.token,
-                        expiresIn: 3600,
+                        expiresIn: 3600*48,
                         tokenType: "Bearer",
                         authState: {
                             email: res.data.email,
@@ -47,7 +47,7 @@ const SignInComponent = () => {
                         // refreshTokenExpireIn: res.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
                     })) {
                         // Redirect to home page or wherever you see fit
-                        navigate('/admin');
+                        navigate('/races');
                         setSnackbarOpen(true);
                         setSnackbarMessage(`Log in successful!`);
                         setSnackbarSeverity(`success`);
