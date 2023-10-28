@@ -72,7 +72,7 @@ const RaceStreamer: React.FC = () => {
     socket.onmessage = (event) => {
       setIsLoading(false);
       const rawData = JSON.parse(event.data);
-      // console.log("WebSocket Data:", rawData);
+      console.log("WebSocket Data:", rawData);
       let formattedData: RaceData[] = Object.entries(rawData.ff_cache).map(([raceId, horses]) => {
         let horseData: HorseData[] = Object.entries(horses)
           .filter(([key]) => !key.startsWith('_'))
@@ -165,7 +165,7 @@ const RaceStreamer: React.FC = () => {
 
   return (
     <div>
-      <div className="dropdown-container" style={{ textAlign: "center", marginTop:"50px" }}>
+      <div className="dropdown-container" style={{ textAlign: "center", marginBottom:"30px", marginTop:"50px" }}>
         <label>Select view: </label>
         <select onChange={handleTemplateChange} value={templateType}>
           <option value="template2">Chart</option>

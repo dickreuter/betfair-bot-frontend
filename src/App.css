@@ -156,29 +156,3 @@
   font-size: 1.5em;
   margin: 0.67em 0;
 }
-
-.raceTitle {
-  padding-top: 1em;
-  font-size: 1.5em;
-  margin: 0.83em 0;
-}
-.raceTitleTable {
-  padding-top: 1em;
-  font-size: 1em;
-  margin: 0.5em 0;
-}
-
-.fundsTable{
-  display: flex;
-  justify-content: center;
-  padding-top: 0px;
-}
-
-
-/* .race-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
