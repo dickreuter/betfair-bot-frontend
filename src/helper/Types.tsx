@@ -9,6 +9,9 @@ export interface HorseData {
         _back_moving_avg: number;
         _lay_moving_avg: number;
         _last_moving_avg: number;
+        _lay_ema: number;
+        _back_ema: number;
+        _last_ema: number;
         _last_min: number;
         _last_max: number;
         _runner_name: string;

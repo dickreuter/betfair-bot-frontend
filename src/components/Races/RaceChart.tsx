@@ -8,11 +8,11 @@ import { OverrunComponent } from '../Overrun';
 export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus }) => {
     const [linesVisibility, setLinesVisibility] = useState({
         back: true,
-        backMovingAvg: false,
+        backMovingAvg: true,
         lay: true,
-        layMovingAvg: false,
+        layMovingAvg: true,
         last: true,
-        lastMovingAvg: false,
+        lastMovingAvg: true,
         lastMin: false,
         lastMax: false,
     });

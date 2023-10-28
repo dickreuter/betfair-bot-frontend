@@ -15,7 +15,7 @@ const NavBar = () => {
             <button className="navbar-toggler" type="button" onClick={toggle} aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <a className="navbar-brand" href="/">sickpunt</a>
+            <a className="navbar-brand" href="/">Deepermind Bettingbot</a>
 
             <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarTogglerDemo03">
                 <ul className="navbar-nav mr-auto d-flex">

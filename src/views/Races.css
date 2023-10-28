@@ -38,7 +38,7 @@
   
   .funTable th, .funTable td {
     height: 20px;  /* Adjust the height */
-    padding: 0px 20px;  /* Adjust the padding */
+    padding: 0px 5px;  /* Adjust the padding */
     text-align: center;  /* Align the text to the center */
   }
   

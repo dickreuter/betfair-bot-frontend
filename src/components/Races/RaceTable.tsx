@@ -72,28 +72,26 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         );
     }
 
+    const colors = [
+        '#FFCCCC', '#CCFFCC', '#CCCCFF', '#FFCCE0', '#E0CCFF', '#CCE0FF', '#FFE0CC',
+        '#D4E6F1', '#D5F5E3', '#FCF3CF', '#FAD7A0', '#D2B4DE', '#AED6F1', '#A2D9CE',
+        '#F5CBA7', '#E6B0AA', '#D7DBDD', '#F7DC6F', '#D6EAF8', '#D0ECE7', '#F0E68C',
+        '#F5DEB3', '#E1A3B3', '#C0D6DF', '#BFD8BD', '#F5E1A4', '#B2BABB', '#D5DBDB',
+        '#D2B48C', '#FAE5D3', '#FADBD8', '#EBDEF0', '#DFFF00', '#FFDAB9', '#E0FFFF',
+        '#F0FFF0', '#F0FFFF', '#F5F5DC', '#FFFACD', '#FFF8DC', '#FFFAF0', '#F8F8FF',
+        '#F5F5F5', '#FFF5E1', '#FFEBE6', '#FFFAEB', '#FFF4F2', '#F5F5F5', '#FAFAFA'
+      ];
+      
+      // Rest of the code remains the same
+      
 
-    const horseDataWithOdds = horseData.map((horse) => ({
-        horseId: horse.horseId,
-        data: {
-            back: horse.data.back ? 1 / horse.data.back : null,
-            lay: horse.data.lay ? 1 / horse.data.lay : null,
-            last: horse.data.last ? 1 / horse.data.last : null,
-            _back_overrun: horse.data._back_overrun,
-            _lay_overrun: horse.data._lay_overrun,
-            _back_moving_avg: horse.data._back_moving_avg ? 1 / horse.data._back_moving_avg : null,
-            _lay_moving_avg: horse.data._lay_moving_avg ? 1 / horse.data._lay_moving_avg : null,
-            _last_moving_avg: horse.data._last_moving_avg ? 1 / horse.data._last_moving_avg : null,
-            _last_min: horse.data._last_min ? 1 / horse.data._last_min : null,
-            _last_max: horse.data._last_max ? 1 / horse.data._last_max : null,
-            _horse_name: horse.data._runner_name,
-            _horse_info: horse.data._horse_info,
-            _strategy_status: horse.data._strategy_status,
-        },
-    }));
+    const getColorFromHorseId = (horseId) => {
+      const hash = horseId.split('').reduce((acc, char) => {
+        return char.charCodeAt(0) + ((acc << 5) - acc);
+      }, 0);
+      return colors[Math.abs(hash) % colors.length];
+    };
 
-
-    const chartHeight = 400;
     let totalSeconds = Math.abs(Math.floor(secondsToStart));
     let sign = secondsToStart > 0 ? "-" : "";
 
@@ -101,6 +99,14 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     let minutes = Math.floor((totalSeconds % 3600) / 60);
     let seconds = totalSeconds % 60;
     const value = sign + hours + minutes + seconds
+    function calculateAngle(value) {
+        value = value * -200;
+        value = Math.max(Math.min(value, 90), -90);
+        return value
+            ;
+    }
+    const disp_color = value => secondsToStart > 0 ? 'green' : 'red';
+
     return (
         <div>
             <div className="raceTitle">{raceTitle}</div>
@@ -108,7 +114,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             <StrategyStatusComponent strategyStatus={strategyStatus} />
 
             <div className="counter">
-                <Display count="4" height="30" value={totalSeconds} />
+                <Display count="4" height="30" color={disp_color()} value={totalSeconds} />
             </div>
 
             <table className="funTable">
@@ -118,15 +124,45 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                         <th>Back</th>
                         <th>Lay</th>
                         <th>Last</th>
+                        <th>Back Momentum</th>
+                        <th>Lay Momentum</th>
+                        <th>Last Momentum</th>
                     </tr>
                 </thead>
                 <tbody>
                     {horseData.map((horse, index) => (
-                        <tr key={index}>
-                            <td title={horse.horseId}>{horse.horseId}</td>
-                            <td className={flashingCells[`${index}_back`] ? 'flash' : ''} title={horse.data.back}>{horse.data.back}</td>
-                            <td className={flashingCells[`${index}_lay`] ? 'flash' : ''} title={horse.data.lay}>{horse.data.lay}</td>
-                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''} title={horse.data.last}>{horse.data.last}</td>
+                       <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
+                            <td>{horse.horseId}</td>
+                            <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
+                            <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
+                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
+                            <td className={flashingCells[`${index}_back_ema`] ? 'flash' : ''}>
+                                <div>
+                                    {horse.data._back_ema}
+                                    <span style={{
+                                        display: 'inline-block',
+                                        transform: `rotate(${calculateAngle(horse.data._back_ema)}deg)`
+                                    }}>→</span>
+                                </div>
+                            </td>
+                            <td className={flashingCells[`${index}_lay_ema`] ? 'flash' : ''}>
+                                <div>
+                                    {horse.data._lay_ema}
+                                    <span style={{
+                                        display: 'inline-block',
+                                        transform: `rotate(${calculateAngle(horse.data._lay_ema)}deg)`
+                                    }}>→</span>
+                                </div>
+                            </td>
+                            <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
+                                <div>
+                                    {horse.data._last_ema}
+                                    <span style={{
+                                        display: 'inline-block',
+                                        transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
+                                    }}>→</span>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
