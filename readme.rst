@@ -20,3 +20,12 @@ Project structure
 * `src/views` - contains the pages
 * `src/routes` - contains the routes
 * `src/assets` - contains the images, fonts, etc.
+
+
+.. figure:: docs/view1.gif
+
+.. figure:: docs/view2.gif
+
+.. figure:: docs/analysis.gif
+
+.. figure:: docs/orders.gif
