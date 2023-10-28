@@ -117,12 +117,13 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                 <thead>
                     <tr>
                         <th>Racer ID</th>
+                        <th>Last</th>
                         <th>Back</th>
                         <th>Lay</th>
-                        <th>Last</th>
+                        <th>Last Momentum</th>
                         <th>Back Momentum</th>
                         <th>Lay Momentum</th>
-                        <th>Last Momentum</th>
+
                         <th>Placed Order</th>
                     </tr>
                 </thead>
@@ -130,9 +131,18 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                     {horseData.map((horse, index) => (
                         <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
                             <td>{horse.horseId}</td>
+                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
                             <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
                             <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
-                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
+                            <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
+                                <div>
+                                    {horse.data._last_ema}
+                                    <span style={{
+                                        display: 'inline-block',
+                                        transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
+                                    }}>→</span>
+                                </div>
+                            </td>
                             <td className={flashingCells[`${index}_back_ema`] ? 'flash' : ''}>
                                 <div>
                                     {horse.data._back_ema}
@@ -151,15 +161,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                                     }}>→</span>
                                 </div>
                             </td>
-                            <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
-                                <div>
-                                    {horse.data._last_ema}
-                                    <span style={{
-                                        display: 'inline-block',
-                                        transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
-                                    }}>→</span>
-                                </div>
-                            </td>
+                        
                             <td>
                                 {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
                             </td>
