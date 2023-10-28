@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { API_URL } from '../..//helper/Constants';
 import AuthState from './AuthState';
+import PaymentCards from '../../views/Purchase';
 
 const SignInComponent = () => {
     const signIn = useSignIn();
@@ -110,6 +111,10 @@ const SignInComponent = () => {
                     </Alert>
                 </Snackbar>
                 <AuthState />
+
+                <div>
+             <PaymentCards/>
+        </div>
 
             </div>
         </>

@@ -35,10 +35,17 @@ const NavBar = () => {
                     <li className="nav-item">
                         <a className="nav-link" href="https://discord.gg/QdY3Ddyj">Support chat</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="https://github.com/dickreuter/betfair-bot-frontend">Source code</a>
+                    </li>
 
+
+                    <li className="nav-item">
+                        <a className="nav-link" href="http://www.deepermind-pokerbot.com">Poker</a>
+                    </li>
 
                     {
-                        auth?.()?.email ? (
+                        auth?.()? (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/admin">Admin</Link>
                             </li>
@@ -46,14 +53,14 @@ const NavBar = () => {
                     }
 
                     {
-                        auth?.()?.email ? (
+                        auth?.()? (
                             <li className="nav-item">
                             <Link className="nav-link" to="/logout">Logout</Link>
                         </li>
                         ) :
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/purchase">Purchase</Link>
+                                    <Link className="nav-link" to="/purchase">Register</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/login">Login</Link>
