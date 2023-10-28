@@ -10,7 +10,6 @@ import { useAuthUser } from 'react-auth-kit';
 import { RaceTable } from '../components/Races/RaceTable';
 
 const MAX_RETRIES = 999999;
-// const auth = useAuthUser();
 // const username = auth ? auth().user : 'default';
 
 const RaceStreamer: React.FC = () => {
@@ -19,7 +18,7 @@ const RaceStreamer: React.FC = () => {
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
-  const [templateType, setTemplateType] = useState("template2");
+  const [templateType, setTemplateType] = useState("template1");
   const handleTemplateChange = (event) => {
     setTemplateType(event.target.value);
   };
@@ -88,6 +87,9 @@ const RaceStreamer: React.FC = () => {
               _back_moving_avg: data._back_moving_avg,
               _lay_moving_avg: data._lay_moving_avg,
               _last_moving_avg: data._last_moving_avg,
+              _lay_ema: data._lay_ema,
+              _back_ema: data._back_ema,
+              _last_ema: data._last_ema,
               _last_min: data._last_min,
               _last_max: data._last_max,
               _runner_name: data._runner_name,
@@ -167,7 +169,7 @@ const RaceStreamer: React.FC = () => {
         <label>Select view: </label>
         <select onChange={handleTemplateChange} value={templateType}>
           <option value="template2">Chart</option>
-          <option value="template1">Table</option>
+          <option value="template1">Momentum Tables</option>
         </select>
       </div>
       <div className='fundsTable'>
@@ -184,6 +186,7 @@ const RaceStreamer: React.FC = () => {
             <div className="row">
               {raceData.map((race) => (
                 <div className="col-md-4" key={race.raceId}>
+                     <div className="race-card">
                   <RaceTable 
                     raceId={race.raceId}
                     raceTitle={race.raceTitle}
@@ -194,6 +197,7 @@ const RaceStreamer: React.FC = () => {
                     secondsToStart={race.secondsToStart}
                     strategyStatus={race.strategyStatus}
                   />
+                  </div>
                 </div>
               ))}
             </div>

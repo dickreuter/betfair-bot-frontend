@@ -11,6 +11,10 @@ export const DATA_ATTRIBUTES = [
     "Back total odds",
     "Lay total odds",
 
+    "Back momentum",
+    "Lay momentum",
+    "Last trade momentum",
+
     "Avg $",    
     "Bar",
     "Career",
