@@ -44,7 +44,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             return acc;
         }, {});
 
-        console.log(selectionIdPriceMap);
+        // console.log(selectionIdPriceMap);
     } else {
         selectionIdPriceMap = {};
         // console.log("orders is either not defined or not an array");
@@ -110,7 +110,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             <StrategyStatusComponent strategyStatus={strategyStatus} />
 
             <div className="counter">
-                <Display count="4" height="30" color={disp_color()} value={totalSeconds} />
+            {sign}{hours}h {minutes}m {seconds}s
             </div>
 
             <table className="funTable">
