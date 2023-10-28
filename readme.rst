@@ -2,6 +2,33 @@ Betfair Bot React Frontend
 ==========================
 The code is the frontend for the Betfair bot. It is written in React and uses Vite as the bundler.
 
+Race view
+---------
+
+You can select between multiple views to see current and upcoming races.
+
+.. figure:: docs/view1.gif
+
+.. figure:: docs/view2.gif
+
+
+Strategy Editor
+---------------
+
+The strategy editor allows you to create strategies for automated betting, using the metadata about the different runners.
+
+.. figure:: docs/strategy.gif
+
+
+Analysis
+--------
+
+You can analyze the outcome of the bets. The orders page offers filtering mechanisms and the Analysis page allows you to pivot the reults.
+
+.. figure:: docs/analysis.gif
+
+.. figure:: docs/orders.gif
+
 
 Installation
 ------------
