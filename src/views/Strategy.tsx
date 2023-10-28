@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 interface IAttributesConfig {
   active: string;
   market_type: string;
+  persistenceType: string;
   StrategyName: string;
   selectedCountries: string[];
   selectedSportType: string;
@@ -32,6 +33,7 @@ const defaultAttributesConfig: IAttributesConfig = {
   active: "off",
   StrategyName: "",
   market_type: "WIN",
+  persistenceType: "LAPSE",
   selectedCountries: [],
   selectedSportType: "Horse Racing",
   betType: "",
@@ -327,7 +329,13 @@ const Strategy = () => {
             </select>
           </div>
         </div>
-
+        <div className="selections">
+            <select value={data.persistenceType} onChange={(e) => handleChange('persistenceType', e.target.value)}>
+              <option value="LAPSE">Lapse (cancel) the order automatically when the market is turned in play if the bet is unmatched</option>
+              <option value="PERSIST">Persist the unmatched order to in-play. The bet will be placed automatically into the in-play market at the start of the event. </option>
+              <option value="MARKET_ON_CLOSE">Put the order into the auction (SP) at turn-in-play</option>
+            </select>
+          </div>
       </div>
 
 
@@ -355,11 +363,11 @@ const Strategy = () => {
       </div>
 
 
-      {/* Multi horses */}
+      {/* Multi runners */}
       <div className="selection-box d-flex">
-        <label>Maximum different horses bet per race</label>
+        <label>Maximum different runners bet per race</label>
         <div className="selections">
-          <input title="The amount of maximum horses that a bet is placed on for a single race" type="number" placeholder="Max" value={data.maxHorsesToBet} onChange={(e) => handleChange('maxHorsesToBet', e.target.value)} />
+          <input title="The amount of maximum runners that a bet is placed on for a single race" type="number" placeholder="Max" value={data.maxHorsesToBet} onChange={(e) => handleChange('maxHorsesToBet', e.target.value)} />
 
           <select value={data.maxHorsesToBetStrategy} onChange={(e) => handleChange('maxHorsesToBetStrategy', e.target.value)}>
             <option value="lowest odds first">Lowest odds first</option>
