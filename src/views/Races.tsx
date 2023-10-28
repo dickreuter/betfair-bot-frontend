@@ -196,6 +196,7 @@ const RaceStreamer: React.FC = () => {
                     overrunLast={race.overrunLast}
                     secondsToStart={race.secondsToStart}
                     strategyStatus={race.strategyStatus}
+                    orders={race.orders}
                   />
                   </div>
                 </div>
@@ -215,6 +216,7 @@ const RaceStreamer: React.FC = () => {
                 overrunLast={race.overrunLast}
                 secondsToStart={race.secondsToStart}
                 strategyStatus={race.strategyStatus}
+                orders={race.orders}
               />
               <OpenOrdersTable data={race.orders} />
             </>

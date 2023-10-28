@@ -4,27 +4,9 @@ import { RaceProps } from '../../helper/Types'; // Assuming you will create this
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 
-export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus }) => {
-    const [linesVisibility, setLinesVisibility] = useState({
-        back: true,
-        backMovingAvg: false,
-        lay: true,
-        layMovingAvg: false,
-        last: true,
-        lastMovingAvg: false,
-        lastMin: false,
-        lastMax: false,
-    });
+export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, orders }) => {
     const [prevHorseData, setPrevHorseData] = useState(horseData);
-
-    const toggleLineVisibility = (lineName: any) => {
-        setLinesVisibility({
-            ...linesVisibility,
-            [lineName]: !linesVisibility[lineName],
-        });
-    };
     const [flashingCells, setFlashingCells] = useState({});
-
     useEffect(() => {
         // Your existing logic
         const newFlashingCells = {};
@@ -54,6 +36,23 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         return currentValue !== previousValue;
     };
 
+    let selectionIdPriceMap = {}; 
+    if (Array.isArray(orders)) {
+        // Use reduce to create a hashmap
+        selectionIdPriceMap = orders.reduce((acc, order) => {
+            acc[order.selection_id] = order.price;
+            return acc;
+        }, {});
+
+        console.log(selectionIdPriceMap);
+    } else {
+        selectionIdPriceMap = {};
+        // console.log("orders is either not defined or not an array");
+    }
+
+
+
+
     const StrategyStatusComponent = ({ strategyStatus }) => {
         if (!strategyStatus || typeof strategyStatus !== 'object') {
             return <div>Error: Strategy status is not available</div>;
@@ -80,16 +79,16 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         '#D2B48C', '#FAE5D3', '#FADBD8', '#EBDEF0', '#DFFF00', '#FFDAB9', '#E0FFFF',
         '#F0FFF0', '#F0FFFF', '#F5F5DC', '#FFFACD', '#FFF8DC', '#FFFAF0', '#F8F8FF',
         '#F5F5F5', '#FFF5E1', '#FFEBE6', '#FFFAEB', '#FFF4F2', '#F5F5F5', '#FAFAFA'
-      ];
-      
-      // Rest of the code remains the same
-      
+    ];
+
+    // Rest of the code remains the same
+
 
     const getColorFromHorseId = (horseId) => {
-      const hash = horseId.split('').reduce((acc, char) => {
-        return char.charCodeAt(0) + ((acc << 5) - acc);
-      }, 0);
-      return colors[Math.abs(hash) % colors.length];
+        const hash = horseId.split('').reduce((acc, char) => {
+            return char.charCodeAt(0) + ((acc << 5) - acc);
+        }, 0);
+        return colors[Math.abs(hash) % colors.length];
     };
 
     let totalSeconds = Math.abs(Math.floor(secondsToStart));
@@ -127,11 +126,12 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                         <th>Back Momentum</th>
                         <th>Lay Momentum</th>
                         <th>Last Momentum</th>
+                        <th>Placed Order</th>
                     </tr>
                 </thead>
                 <tbody>
                     {horseData.map((horse, index) => (
-                       <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
+                        <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
                             <td>{horse.horseId}</td>
                             <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
                             <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
@@ -162,6 +162,9 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                                         transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
                                     }}>→</span>
                                 </div>
+                            </td>
+                            <td>
+                                {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
                             </td>
                         </tr>
                     ))}
