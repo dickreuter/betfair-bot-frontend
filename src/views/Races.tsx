@@ -19,6 +19,7 @@ const RaceStreamer: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
   const [templateType, setTemplateType] = useState("template1");
+  const email = auth?.()?.email || 'default';
   const handleTemplateChange = (event) => {
     setTemplateType(event.target.value);
   };
@@ -165,65 +166,76 @@ const RaceStreamer: React.FC = () => {
 
   return (
     <div>
-      <div className="dropdown-container" style={{ textAlign: "center", marginBottom:"30px", marginTop:"50px" }}>
+      {auth?.()?  (
+        <div className='fundsTable'>
+          <Funds />
+        </div>
+      ) : (
+        <div className='video'>
+         <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      )}
+
+
+      <div className="dropdown-container" style={{ textAlign: "center", marginBottom: "0px", marginTop: "10px" }}>
         <label>Select view: </label>
         <select onChange={handleTemplateChange} value={templateType}>
           <option value="template2">Chart</option>
           <option value="template1">Momentum Tables</option>
         </select>
       </div>
-      <div className='fundsTable'>
-        <Funds />
-      </div>
+
       <div className="h1">Races</div>
-      {isLoading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-          <CircularProgress />
-        </div>
-      ) : (
-        templateType === "template1" ? (
-          <div className="container-fluid">
-            <div className="row">
-              {raceData.map((race) => (
-                <div className="col-md-3" key={race.raceId}>
-                     <div className="race-card">
-                  <RaceTable 
-                    raceId={race.raceId}
-                    raceTitle={race.raceTitle}
-                    horseData={race.horseData}
-                    overrunBack={race.overrunBack}
-                    overrunLay={race.overrunLay}
-                    overrunLast={race.overrunLast}
-                    secondsToStart={race.secondsToStart}
-                    strategyStatus={race.strategyStatus}
-                    orders={race.orders}
-                  />
-                  </div>
-                </div>
-              ))}
-            </div>
+      {
+        isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <CircularProgress />
           </div>
         ) : (
-          raceData.map((race) => (
-            <>
-              <RaceChart
-                key={race.raceId}
-                raceId={race.raceId}
-                raceTitle={race.raceTitle}
-                horseData={race.horseData}
-                overrunBack={race.overrunBack}
-                overrunLay={race.overrunLay}
-                overrunLast={race.overrunLast}
-                secondsToStart={race.secondsToStart}
-                strategyStatus={race.strategyStatus}
-                orders={race.orders}
-              />
-              <OpenOrdersTable data={race.orders} />
-            </>
-          ))
+          templateType === "template1" ? (
+            <div className="container-fluid">
+              <div className="row">
+                {raceData.map((race) => (
+                  <div className="col-md-3" key={race.raceId}>
+                    <div className="race-card">
+                      <RaceTable
+                        raceId={race.raceId}
+                        raceTitle={race.raceTitle}
+                        horseData={race.horseData}
+                        overrunBack={race.overrunBack}
+                        overrunLay={race.overrunLay}
+                        overrunLast={race.overrunLast}
+                        secondsToStart={race.secondsToStart}
+                        strategyStatus={race.strategyStatus}
+                        orders={race.orders}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            raceData.map((race) => (
+              <>
+                <RaceChart
+                  key={race.raceId}
+                  raceId={race.raceId}
+                  raceTitle={race.raceTitle}
+                  horseData={race.horseData}
+                  overrunBack={race.overrunBack}
+                  overrunLay={race.overrunLay}
+                  overrunLast={race.overrunLast}
+                  secondsToStart={race.secondsToStart}
+                  strategyStatus={race.strategyStatus}
+                  orders={race.orders}
+                />
+                <OpenOrdersTable data={race.orders} />
+              </>
+            ))
+          )
         )
-      )}
-    </div>
+      }
+    </div >
   );
 };
 
