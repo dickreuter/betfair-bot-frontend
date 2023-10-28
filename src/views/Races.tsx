@@ -185,7 +185,7 @@ const RaceStreamer: React.FC = () => {
           <div className="container-fluid">
             <div className="row">
               {raceData.map((race) => (
-                <div className="col-md-4" key={race.raceId}>
+                <div className="col-md-3" key={race.raceId}>
                      <div className="race-card">
                   <RaceTable 
                     raceId={race.raceId}

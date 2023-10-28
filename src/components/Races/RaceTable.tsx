@@ -50,9 +50,6 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         // console.log("orders is either not defined or not an array");
     }
 
-
-
-
     const StrategyStatusComponent = ({ strategyStatus }) => {
         if (!strategyStatus || typeof strategyStatus !== 'object') {
             return <div>Error: Strategy status is not available</div>;
@@ -104,11 +101,11 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         return value
             ;
     }
-    const disp_color = value => secondsToStart > 0 ? 'green' : 'red';
+    const disp_color = value => secondsToStart < 0 ? 'green' : 'red';
 
     return (
         <div>
-            <div className="raceTitle">{raceTitle}</div>
+            <div className="raceTitleTable">{raceTitle}</div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
 
@@ -119,7 +116,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             <table className="funTable">
                 <thead>
                     <tr>
-                        <th>Horse ID</th>
+                        <th>Racer ID</th>
                         <th>Back</th>
                         <th>Lay</th>
                         <th>Last</th>

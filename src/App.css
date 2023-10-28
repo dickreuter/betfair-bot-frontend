@@ -162,11 +162,16 @@
   font-size: 1.5em;
   margin: 0.83em 0;
 }
+.raceTitleTable {
+  padding-top: 1em;
+  font-size: 1em;
+  margin: 0.5em 0;
+}
 
 .fundsTable{
   display: flex;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 0px;
 }
 
 
