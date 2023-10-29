@@ -4,8 +4,9 @@ import { useAuthUser } from 'react-auth-kit';
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-    const auth = useAuthUser();
-    const email = auth?.()?.email || 'default';
+    const getAuth = useAuthUser();
+    const auth = getAuth();    // Directly get the authentication object
+    const { email = 'default' } = auth || {};  // Destructure email and provide a default value
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -45,7 +46,7 @@ const NavBar = () => {
                     </li>
 
                     {
-                        auth?.()? (
+                        auth ? (
                             <li className="nav-item">
                                 <Link className="nav-link" to="/admin">Admin</Link>
                             </li>
@@ -53,7 +54,7 @@ const NavBar = () => {
                     }
 
                     {
-                        auth?.()? (
+                        auth ? (
                             <li className="nav-item">
                             <Link className="nav-link" to="/logout">Logout</Link>
                         </li>

@@ -10,16 +10,17 @@ import { useAuthUser } from 'react-auth-kit';
 import { RaceTable } from '../components/Races/RaceTable';
 
 const MAX_RETRIES = 999999;
-// const username = auth ? auth().user : 'default';
 
 const RaceStreamer: React.FC = () => {
-  const auth = useAuthUser();
-  const tokenRef = useRef(auth?.()?.token || 'default');
+  const getAuth = useAuthUser();
+  const auth = getAuth();
+  const tokenRef = useRef(auth?.token || 'default');
+  const email = auth?.email || 'default';
+  
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
   const [templateType, setTemplateType] = useState("template1");
-  const email = auth?.()?.email || 'default';
   const handleTemplateChange = (event) => {
     setTemplateType(event.target.value);
   };
@@ -168,7 +169,7 @@ const RaceStreamer: React.FC = () => {
 
   return (
     <div>
-      {auth?.()?  (
+      {auth?  (
         <div className='fundsTable'>
           <Funds />
         </div>

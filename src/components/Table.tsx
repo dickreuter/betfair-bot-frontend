@@ -11,9 +11,12 @@ import { useAuthUser } from 'react-auth-kit';
 const Table = ({ endpoint }: { endpoint: string }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<any[]>([]);
-  const auth = useAuthUser();
-  const tokenRef = useRef(auth?.()?.token || 'default');
 
+  const getAuth = useAuthUser();
+  const auth = getAuth();
+  const tokenRef = useRef(auth?.token || 'default');
+
+  console.log(tokenRef.current)
   useEffect(() => {
     axios
     .post(`http://${API_URL}/${endpoint}`, 

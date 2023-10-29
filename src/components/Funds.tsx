@@ -6,8 +6,9 @@ import './Table.css';
 
 function Funds() {
   const [balanceData, setBalanceData] = useState(null);
-  const auth = useAuthUser();
-  const tokenRef = useRef(auth?.()?.token || 'default');
+  const getAuth = useAuthUser();
+  const auth = getAuth();
+  const tokenRef = useRef(auth?.token || 'default');
 
   async function fetchBalanceData() {
     try {

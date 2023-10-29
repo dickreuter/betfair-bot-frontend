@@ -14,8 +14,10 @@ import { useAuthUser } from 'react-auth-kit';
 const PlotlyRenderers = createPlotlyRenderers(Plot);
 
 const PivotTable = ({ endpoint }) => {
-  const auth = useAuthUser();
-  const tokenRef = useRef(auth?.()?.token || 'default');
+  const getAuth = useAuthUser();
+  const auth = getAuth();
+  const tokenRef = useRef(auth?.token || 'default');
+  
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pivotState, setPivotState] = useState({});
