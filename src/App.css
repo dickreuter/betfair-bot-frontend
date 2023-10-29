@@ -1,9 +1,7 @@
 #root {
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
-
 
 @keyframes logo-spin {
   from {
@@ -29,7 +27,7 @@
 .card:hover {
   background-color: blue;
   color: white; /* Changing the text color to white for better visibility on blue background */
-  transition: background-color .5s ease; /* Smooth transition effect */
+  transition: background-color 0.5s ease; /* Smooth transition effect */
 }
 
 .titleimage {
@@ -39,7 +37,7 @@
 
 .items li {
   text-align: left;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .items li input[type="checkbox"] {
@@ -72,33 +70,33 @@
 
 /* Changes the color of the link on hover */
 .nav-link:hover {
-  color: #007BFF;  /* Blue color, can be replaced with any other color */
-  text-decoration: none;  /* Removes the underline which is usually there by default on hover */
-  transition: color 0.5s ease;  /* Smooth transition effect */
+  color: #007bff; /* Blue color, can be replaced with any other color */
+  text-decoration: none; /* Removes the underline which is usually there by default on hover */
+  transition: color 0.5s ease; /* Smooth transition effect */
 }
 
 /* Adds an underline effect on hover */
 .nav-item:hover .nav-link::after {
-  content: '';
+  content: "";
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #007BFF;  /* Blue color, can be replaced with any other color */
+  background-color: #007bff; /* Blue color, can be replaced with any other color */
   transition: width 0.3s ease;
 }
 
 /* Changes the background color on hover */
 .nav-item:hover {
-  background-color: #f8f9fa;  /* Light grey, can be replaced with any other color */
+  background-color: #f8f9fa; /* Light grey, can be replaced with any other color */
   transition: background-color 0.3s ease;
 }
 
 @keyframes spin {
   from {
-    transform: rotate(0deg) scale(.7);
+    transform: rotate(0deg) scale(0.7);
   }
   to {
-    transform: rotate(360deg) scale(.7);
+    transform: rotate(360deg) scale(0.7);
   }
 }
 
@@ -155,4 +153,18 @@
   padding-top: 1em;
   font-size: 1.5em;
   margin: 0.67em 0;
+}
+
+.iframe-video {
+  max-width: 700px;
+  width: 100%;
+  height: 415px;
+}
+
+@media screen and (max-width: 480px) {
+  .iframe-video {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+  }
 }
