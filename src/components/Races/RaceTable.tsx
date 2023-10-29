@@ -105,73 +105,83 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
 
     return (
         <div>
-            <div className="raceTitleTable">{raceTitle}</div>
-            <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
-            <StrategyStatusComponent strategyStatus={strategyStatus} />
-            <div className="latency">
-                Internal execution latency: {latency}s
+            <div className='table-card row '>
+                <div className="raceTitleTable mb-4" style={{ fontSize: "24px", marginTop: 0 }}>{raceTitle}</div>
+                <div className='col-6'>
+                    <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
+                </div>
+                <div className='col-6'>
+                    <StrategyStatusComponent strategyStatus={strategyStatus} />
+                </div>
+                <div className="latency col-6">
+                    Internal execution latency: {latency}s
+                </div>
+
+                <div className="counter col-6">
+                    {sign}{hours}h {minutes}m {seconds}s
+                </div>
             </div>
 
-            <div className="counter">
-                {sign}{hours}h {minutes}m {seconds}s
-            </div>
+            <div className='funTable-wrapper'>
 
-            <table className="funTable">
-                <thead>
-                    <tr>
-                        <th>Racer ID</th>
-                        <th>Last</th>
-                        <th>Back</th>
-                        <th>Lay</th>
-                        <th>Last Momentum</th>
-                        <th>Back Momentum</th>
-                        <th>Lay Momentum</th>
+                <table className="funTable">
+                    <thead className='funTable-thead'>
+                        <tr>
+                            <th>Racer ID</th>
+                            <th>Last</th>
+                            <th>Back</th>
+                            <th>Lay</th>
+                            <th>Last Momentum</th>
+                            <th>Back Momentum</th>
+                            <th>Lay Momentum</th>
 
-                        <th>Placed Order</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {horseData.map((horse, index) => (
-                        <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
-                            <td>{horse.horseId}</td>
-                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
-                            <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
-                            <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
-                            <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
-                                <div>
-                                    {horse.data._last_ema}
-                                    <span style={{
-                                        display: 'inline-block',
-                                        transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
-                                    }}>→</span>
-                                </div>
-                            </td>
-                            <td className={flashingCells[`${index}_back_ema`] ? 'flash' : ''}>
-                                <div>
-                                    {horse.data._back_ema}
-                                    <span style={{
-                                        display: 'inline-block',
-                                        transform: `rotate(${calculateAngle(horse.data._back_ema)}deg)`
-                                    }}>→</span>
-                                </div>
-                            </td>
-                            <td className={flashingCells[`${index}_lay_ema`] ? 'flash' : ''}>
-                                <div>
-                                    {horse.data._lay_ema}
-                                    <span style={{
-                                        display: 'inline-block',
-                                        transform: `rotate(${calculateAngle(horse.data._lay_ema)}deg)`
-                                    }}>→</span>
-                                </div>
-                            </td>
-
-                            <td>
-                                {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
-                            </td>
+                            <th>Placed Order</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {horseData.map((horse, index) => (
+                            <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
+                                <td>{horse.horseId}</td>
+                                <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
+                                <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
+                                <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
+                                <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
+                                    <div>
+                                        {horse.data._last_ema}
+                                        <span style={{
+                                            display: 'inline-block',
+                                            transform: `rotate(${calculateAngle(horse.data._last_ema)}deg)`
+                                        }}>→</span>
+                                    </div>
+                                </td>
+                                <td className={flashingCells[`${index}_back_ema`] ? 'flash' : ''}>
+                                    <div>
+                                        {horse.data._back_ema}
+                                        <span style={{
+                                            display: 'inline-block',
+                                            transform: `rotate(${calculateAngle(horse.data._back_ema)}deg)`
+                                        }}>→</span>
+                                    </div>
+                                </td>
+                                <td className={flashingCells[`${index}_lay_ema`] ? 'flash' : ''}>
+                                    <div>
+                                        {horse.data._lay_ema}
+                                        <span style={{
+                                            display: 'inline-block',
+                                            transform: `rotate(${calculateAngle(horse.data._lay_ema)}deg)`
+                                        }}>→</span>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     );
 };

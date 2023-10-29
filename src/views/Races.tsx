@@ -16,7 +16,7 @@ const RaceStreamer: React.FC = () => {
   const auth = getAuth();
   const tokenRef = useRef(auth?.token || 'default');
   const email = auth?.email || 'default';
-  
+
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
@@ -168,14 +168,17 @@ const RaceStreamer: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      {auth?  (
+    <div style={{ maxWidth: "1480px", margin: "0 auto" }}>
+      {auth ? (
         <div className='fundsTable'>
           <Funds />
         </div>
       ) : (
-        <div className='video'>
-         <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div className='video px-4' style={{ padding: "120px 0" }} >
+          <iframe
+            className='iframe-video'
+            src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e"
+            allow="autoplay fullscreen picture-in-picture" allowFullScreen />
         </div>
       )}
 
@@ -196,10 +199,11 @@ const RaceStreamer: React.FC = () => {
           </div>
         ) : (
           templateType === "template1" ? (
-            <div className="container-fluid">
+            <div className="container-fluid-md">
               <div className="row">
                 {raceData.map((race) => (
-                  <div className="col-md-3" key={race.raceId}>
+
+                  <div className="col-12 col-md-6" key={race.raceId}>
                     <div className="race-card">
                       <RaceTable
                         raceId={race.raceId}
