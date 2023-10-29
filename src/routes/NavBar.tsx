@@ -1,15 +1,45 @@
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuthUser } from 'react-auth-kit';
 import { Link } from "react-router-dom";
+import { useSignOut } from 'react-auth-kit';
+import { API_URL } from '../helper/Constants';
 
 const NavBar = () => {
     const getAuth = useAuthUser();
-    const auth = getAuth();    // Directly get the authentication object
-    const { email = 'default' } = auth || {};  // Destructure email and provide a default value
+    const auth = getAuth();
+    const [email, setLoginEmail] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const tokenRef = useRef(auth?.token || 'default');
+    const signOut = useSignOut()
 
     const toggle = () => setIsOpen(!isOpen);
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                const token = tokenRef.current;
+                const response = await axios.post(
+                    `http://${API_URL}/get_login_email`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+                const { email } = response.data;
+                setLoginEmail(email || 'default');
+            } catch (error) {
+                console.error("Failed to get login email:", error);
+                setLoginEmail('default');
+                signOut();
+            }
+        }, 80000);  // 80 seconds
+    
+        return () => clearInterval(interval);  // Cleanup on unmount
+    }, []);
 
     return (
         <nav className="navbar navbar-expand-sm fixed-top navbar-light bg-light">

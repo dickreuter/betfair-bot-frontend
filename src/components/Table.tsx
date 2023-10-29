@@ -15,8 +15,8 @@ const Table = ({ endpoint }: { endpoint: string }) => {
   const getAuth = useAuthUser();
   const auth = getAuth();
   const tokenRef = useRef(auth?.token || 'default');
+  const email = auth?.email || 'default';
 
-  console.log(tokenRef.current)
   useEffect(() => {
     axios
     .post(`http://${API_URL}/${endpoint}`, 
@@ -65,7 +65,7 @@ const Table = ({ endpoint }: { endpoint: string }) => {
           target: "_blank",
       },
       cellClick: function(e, cell) {
-          console.log("Cell  clicked - ", cell.getValue())
+          // console.log("Cell  clicked - ", cell.getValue())
       },
       cssClass: "custom-cell-style"  // Add a custom class to cells in this column
   }));

@@ -55,7 +55,7 @@ const Strategy = () => {
 
   const getAuthHeader = useAuthHeader();
   const authHeader = getAuthHeader();
-  console.log(authHeader);  // Outputs: 'Bearer your_token_here'
+  // console.log(authHeader);  // Outputs: 'Bearer your_token_here'
 
 
   const [availableStrategies, setAvailableStrategies] = useState<string[]>([]);
@@ -147,7 +147,7 @@ const Strategy = () => {
     )
 
       .then(response => {
-        console.log("Response from server:", response.data);
+        // console.log("Response from server:", response.data);
         load_available_strategies();
         loadStrategy(data.StrategyName);
         displayAlert('Strategy successfully saved', 'success');
@@ -188,7 +188,7 @@ const Strategy = () => {
   const loadStrategy = (strat) => {
     const strategyToLoad = typeof strat === 'string' ? strat : selectedStrategy;
     setSelectedStrategy(strategyToLoad);
-    console.log("Loading Strategy:", strategyToLoad);  // Debug log
+    // console.log("Loading Strategy:", strategyToLoad);  // Debug log
 
     // Initialize data with defaultAttributesConfig
     setData(defaultAttributesConfig);
