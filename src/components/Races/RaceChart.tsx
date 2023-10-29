@@ -5,7 +5,7 @@ import { CustomTooltip } from '../CustomTooltip';
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 
-export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus }) => {
+export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [linesVisibility, setLinesVisibility] = useState({
         back: true,
         backMovingAvg: true,
@@ -28,7 +28,7 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         if (!strategyStatus || typeof strategyStatus !== 'object') {
             return <div>Error: Strategy status is not available</div>;
         }
-    
+
         return (
             <div className="strategy-status">
                 <ul>
@@ -41,7 +41,7 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             </div>
         );
     }
-    
+
 
     const horseDataWithOdds = horseData.map((horse) => ({
         horseId: horse.horseId,
@@ -66,16 +66,19 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     const chartHeight = 400;
     let totalSeconds = Math.abs(Math.floor(secondsToStart));
     let sign = secondsToStart > 0 ? "-" : "";
-    
+
     let hours = Math.floor(totalSeconds / 3600);
     let minutes = Math.floor((totalSeconds % 3600) / 60);
     let seconds = totalSeconds % 60;
-    
+
     return (
         <div>
             <div className="raceTitle">{raceTitle}</div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
+            <div className="latency">
+                Internal execution latency: {latency}s
+            </div>
             <p>
                 {sign}{hours}h {minutes}m {seconds}s
             </p>

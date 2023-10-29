@@ -4,7 +4,7 @@ import { RaceProps } from '../../helper/Types'; // Assuming you will create this
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 
-export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, orders }) => {
+export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [prevHorseData, setPrevHorseData] = useState(horseData);
     const [flashingCells, setFlashingCells] = useState({});
     useEffect(() => {
@@ -36,7 +36,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         return currentValue !== previousValue;
     };
 
-    let selectionIdPriceMap = {}; 
+    let selectionIdPriceMap = {};
     if (Array.isArray(orders)) {
         // Use reduce to create a hashmap
         selectionIdPriceMap = orders.reduce((acc, order) => {
@@ -108,9 +108,12 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
             <div className="raceTitleTable">{raceTitle}</div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
+            <div className="latency">
+                Internal execution latency: {latency}s
+            </div>
 
             <div className="counter">
-            {sign}{hours}h {minutes}m {seconds}s
+                {sign}{hours}h {minutes}m {seconds}s
             </div>
 
             <table className="funTable">
@@ -161,7 +164,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                                     }}>→</span>
                                 </div>
                             </td>
-                        
+
                             <td>
                                 {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
                             </td>

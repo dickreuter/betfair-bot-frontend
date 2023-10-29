@@ -52,6 +52,7 @@ export interface RaceData {
     secondsToStart: number;
     orders: OrderData[];
     strategyStatus: {};
+    latency: number;
 }
 
 export interface RaceProps {
@@ -62,4 +63,5 @@ export interface RaceProps {
     overrunLast: number;
     secondsToStart: number;
     strategyStatus: {};
+    latency: number;
 }

@@ -96,6 +96,7 @@ const RaceStreamer: React.FC = () => {
               _runner_name: data._runner_name,
               _horse_info: data._horse_info || {},
               _strategy_status: data._strategy_status || {},
+              _latency: data._latency,
             },
           }));
 
@@ -111,6 +112,7 @@ const RaceStreamer: React.FC = () => {
           secondsToStart: horses._seconds_to_start,
           orders: horses._orders,
           strategyStatus: horses._strategy_status,
+          latency: horses._latency,
         };
       });
 
@@ -207,6 +209,7 @@ const RaceStreamer: React.FC = () => {
                         overrunLast={race.overrunLast}
                         secondsToStart={race.secondsToStart}
                         strategyStatus={race.strategyStatus}
+                        latency={race.latency}
                         orders={race.orders}
                       />
                     </div>
@@ -227,6 +230,7 @@ const RaceStreamer: React.FC = () => {
                   overrunLast={race.overrunLast}
                   secondsToStart={race.secondsToStart}
                   strategyStatus={race.strategyStatus}
+                  latency={race.latency}
                   orders={race.orders}
                 />
                 <OpenOrdersTable data={race.orders} />
