@@ -1,5 +1,4 @@
-// export const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'betfair-bot.com:7779';
-export const API_URL = '127.0.0.1:7779';
+export const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'betfair-bot.com:7779';
 
 
 export const DATA_ATTRIBUTES = [
