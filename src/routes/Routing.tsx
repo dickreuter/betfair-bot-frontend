@@ -8,19 +8,8 @@ import User from "../views/User"
 import Admin from "../views/admin"
 import Purchase from "../views/Purchase"
 import SignInComponent from "../components/auth/SignIn"
-import { useSignOut } from 'react-auth-kit'
-import { useNavigate } from 'react-router-dom'
+import SignOut from "../components/auth/SignOutButton"
 
-const Logout = () => {
-    const navigate = useNavigate()
-    const signOut = useSignOut()
-    signOut();
-    console.log("sign out successful")
-    navigate(("/SignIn"))
-    return (
-        <></>
-    )
-};
 
 function Routing() {
     return (
@@ -35,7 +24,7 @@ function Routing() {
                 <Route path="/user" element={<User />} />
                 <Route path="/purchase" element={<Purchase />} />
                 <Route path="/login" element={<SignInComponent />} />
-                <Route path="/logout" element={<Logout />} />
+                <Route path="/logout" element={<SignOut />} />
             </Routes>
         </div>
     )

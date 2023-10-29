@@ -1,19 +1,14 @@
-import { Button } from '@mui/material'
-import { useSignOut } from 'react-auth-kit'
-import { useNavigate } from 'react-router-dom'
+import { useSignOut } from 'react-auth-kit';
+import { useNavigate } from 'react-router-dom';
 
-const SignOutButton = () => {
+const SignOut = () => {
     const navigate = useNavigate()
     const signOut = useSignOut()
-    
-    const Logout = () => {
-        signOut();
-        console.log("sign out successful")
-        navigate(("/SignIn"))
-    }
-    // return (
-    //     <Button variant="contained" onClick={Logout}>SignOut</Button>
-    // )
-}
+    signOut();
+    navigate(("/races"))
+    return (
+        <></>
+    )
+};
 
-export default SignOutButton
+export default SignOut
