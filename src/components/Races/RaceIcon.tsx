@@ -3,10 +3,10 @@ import { dog, horse } from '../../assets/images';
 const RaceIcon = ({ raceTitle }) => {
     let imagePath = '';
 
-    if (raceTitle.includes('Horse')) {
-        imagePath = horse;
-    } else if (raceTitle.includes('Dog')) {
+    if (raceTitle.includes('Greyhound')) {
         imagePath = dog;
+    } else if (raceTitle.includes('Horse')) {
+        imagePath = horse;
     }
 
     return (

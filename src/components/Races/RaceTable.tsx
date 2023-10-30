@@ -106,7 +106,7 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     return (
         <div>
             <div className="raceTitleTable">{raceTitle}</div>
-            <div>  <RaceIcon raceTitle="Horse Race" /> </div>
+            <div>  <RaceIcon raceTitle={raceTitle} /> </div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
             <div className="latency">
