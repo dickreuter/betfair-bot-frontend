@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Display } from 'react-7-segment-display';
 import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
+import RaceIcon from './RaceIcon';
 
 export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [prevHorseData, setPrevHorseData] = useState(horseData);
@@ -106,15 +106,20 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     return (
         <div>
             <div className="raceTitleTable">{raceTitle}</div>
+            <div>  <RaceIcon raceTitle="Horse Race" /> </div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
             <div className="latency">
                 Internal execution latency: {latency}s
             </div>
 
-            <div className="counter">
+            <p style={{
+                color: secondsToStart < 0 ? 'green' : 'red',
+                backgroundColor: 'white',
+                padding: '0px',  // Added for some spacing, adjust as needed
+            }}>
                 {sign}{hours}h {minutes}m {seconds}s
-            </div>
+            </p>
 
             <table className="funTable">
                 <thead>

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
-import { CustomTooltip } from '../CustomTooltip';
 import '../../views/Races.css';
+import { CustomTooltip } from '../CustomTooltip';
 import { OverrunComponent } from '../Overrun';
+import RaceIcon from './RaceIcon';
 
 export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [linesVisibility, setLinesVisibility] = useState({
@@ -64,6 +65,7 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
 
 
     const chartHeight = 400;
+    const chartWidth = 500;
     let totalSeconds = Math.abs(Math.floor(secondsToStart));
     let sign = secondsToStart > 0 ? "-" : "";
 
@@ -74,15 +76,21 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
     return (
         <div>
             <div className="raceTitle">{raceTitle}</div>
+            <div>  <RaceIcon raceTitle="Horse Race" /> </div>
             <OverrunComponent overrunBack={overrunBack} overrunLay={overrunLay} overrunLast={overrunLast} />
             <StrategyStatusComponent strategyStatus={strategyStatus} />
             <div className="latency">
                 Internal execution latency: {latency}s
             </div>
-            <p>
+            <p style={{
+                color: secondsToStart < 0 ? 'green' : 'red',
+                backgroundColor: 'white',
+                padding: '0px',  // Added for some spacing, adjust as needed
+            }}>
                 {sign}{hours}h {minutes}m {seconds}s
             </p>
             <div>
+
                 <input type="checkbox" id="back" checked={linesVisibility.back} onChange={() => toggleLineVisibility('back')} />
                 <label htmlFor="back">Back</label>
 
@@ -108,7 +116,7 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                 <label htmlFor="lastMax">Last Max</label>
             </div>
             <div className="linechart">
-                <LineChart width={800} height={chartHeight} data={horseDataWithOdds}>
+                <LineChart width={chartWidth} height={chartHeight} data={horseDataWithOdds}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis
                         dataKey="horseId"

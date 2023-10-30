@@ -1,13 +1,13 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
+import { useAuthUser } from 'react-auth-kit';
 import '../App.css';
 import Funds from '../components/Funds';
 import OpenOrdersTable from '../components/OpenOrdersTable';
 import { RaceChart } from '../components/Races/RaceChart';
+import { RaceTable } from '../components/Races/RaceTable';
 import { API_URL } from '../helper/Constants';
 import { RaceData } from '../helper/Types';
-import { useAuthUser } from 'react-auth-kit';
-import { RaceTable } from '../components/Races/RaceTable';
 
 const MAX_RETRIES = 999999;
 
@@ -16,7 +16,7 @@ const RaceStreamer: React.FC = () => {
   const auth = getAuth();
   const tokenRef = useRef(auth?.token || 'default');
   const email = auth?.email || 'default';
-  
+
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
@@ -169,13 +169,13 @@ const RaceStreamer: React.FC = () => {
 
   return (
     <div>
-      {auth?  (
+      {auth ? (
         <div className='fundsTable'>
           <Funds />
         </div>
       ) : (
         <div className='video'>
-         <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
         </div>
       )}
 
@@ -219,24 +219,31 @@ const RaceStreamer: React.FC = () => {
               </div>
             </div>
           ) : (
-            raceData.map((race) => (
-              <>
-                <RaceChart
-                  key={race.raceId}
-                  raceId={race.raceId}
-                  raceTitle={race.raceTitle}
-                  horseData={race.horseData}
-                  overrunBack={race.overrunBack}
-                  overrunLay={race.overrunLay}
-                  overrunLast={race.overrunLast}
-                  secondsToStart={race.secondsToStart}
-                  strategyStatus={race.strategyStatus}
-                  latency={race.latency}
-                  orders={race.orders}
-                />
-                <OpenOrdersTable data={race.orders} />
-              </>
-            ))
+            <div className="container-fluid">
+              <div className="row">
+                {
+                  raceData.map((race) => (
+
+                    <div className="col-md-4" key={race.raceId}>
+                      <div className="race-card"></div>
+                      <RaceChart
+                        key={race.raceId}
+                        raceId={race.raceId}
+                        raceTitle={race.raceTitle}
+                        horseData={race.horseData}
+                        overrunBack={race.overrunBack}
+                        overrunLay={race.overrunLay}
+                        overrunLast={race.overrunLast}
+                        secondsToStart={race.secondsToStart}
+                        strategyStatus={race.strategyStatus}
+                        latency={race.latency}
+                        orders={race.orders}
+                      />
+                      <OpenOrdersTable data={race.orders} />
+                    </div>
+                  ))}
+              </div>
+            </div>
           )
         )
       }
