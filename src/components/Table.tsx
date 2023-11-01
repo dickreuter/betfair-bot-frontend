@@ -17,6 +17,13 @@ const Table = ({ endpoint }: { endpoint: string }) => {
   const tokenRef = useRef(auth?.token || 'default');
   const email = auth?.email || 'default';
 
+  const transformDateFormat = (dateStr) => {
+    const parts = dateStr.split(' ');
+    const dateParts = parts[0].split('/');
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${parts[1]}`;
+  };
+  
+  
   useEffect(() => {
     axios
     .post(`http://${API_URL}/${endpoint}`, 
@@ -28,7 +35,11 @@ const Table = ({ endpoint }: { endpoint: string }) => {
       },
       })
       .then((response) => {
-        setData(response.data);
+        const transformedData = response.data.map(row => ({
+          ...row,
+          timestamp: transformDateFormat(row.timestamp)
+        }));
+        setData(transformedData);
         setIsLoading(false);
       })
       .catch((error) => {

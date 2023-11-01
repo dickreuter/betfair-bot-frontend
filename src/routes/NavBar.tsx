@@ -15,6 +15,11 @@ const NavBar = () => {
     const signOut = useSignOut()
 
     const toggle = () => setIsOpen(!isOpen);
+    const handleNavLinkClick = () => {
+        if (window.innerWidth <= 768) {  // Bootstrap's breakpoint for small devices
+            toggle();
+        }
+    }
 
     useEffect(() => {
         const interval = setInterval(async () => {
@@ -37,7 +42,7 @@ const NavBar = () => {
                 signOut();
             }
         }, 80000);  // 80 seconds
-    
+
         return () => clearInterval(interval);  // Cleanup on unmount
     }, []);
 
@@ -47,9 +52,8 @@ const NavBar = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <a className="navbar-brand" href="/">Deepermind Bettingbot</a>
-
             <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarTogglerDemo03">
-                <ul className="navbar-nav mr-auto d-flex">
+            <ul className="navbar-nav mr-auto d-flex ml-auto">  {/* Apply ml-auto here */}
                     <li className="nav-item">
                         <Link className="nav-link" to="/races">Races</Link>
                     </li>
@@ -70,11 +74,6 @@ const NavBar = () => {
                         <a className="nav-link" href="https://github.com/dickreuter/betfair-bot-frontend">Source code</a>
                     </li>
 
-
-                    <li className="nav-item">
-                        <a className="nav-link" href="http://www.deepermind-pokerbot.com">Poker</a>
-                    </li>
-
                     {
                         auth ? (
                             <li className="nav-item">
@@ -86,8 +85,8 @@ const NavBar = () => {
                     {
                         auth ? (
                             <li className="nav-item">
-                            <Link className="nav-link" to="/logout">Logout</Link>
-                        </li>
+                                <Link className="nav-link" to="/logout">Logout</Link>
+                            </li>
                         ) :
                             <>
                                 <li className="nav-item">
@@ -98,6 +97,9 @@ const NavBar = () => {
                                 </li>
                             </>
                     }
+                    <li className="nav-item ml-auto">  {/* Right align this nav item */}
+                        <a className="nav-link" href="http://www.deepermind-pokerbot.com" onClick={handleNavLinkClick}>Poker</a>
+                    </li>
 
                 </ul>
 
