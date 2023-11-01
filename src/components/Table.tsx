@@ -18,10 +18,15 @@ const Table = ({ endpoint }: { endpoint: string }) => {
   const email = auth?.email || 'default';
 
   const transformDateFormat = (dateStr) => {
+    if (typeof dateStr !== 'string') {
+      return dateStr; // return as-is if it's not a string
+    }
+    
     const parts = dateStr.split(' ');
     const dateParts = parts[0].split('/');
     return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${parts[1]}`;
   };
+  
   
   
   useEffect(() => {
