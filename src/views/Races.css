@@ -1,125 +1,141 @@
 .linechart {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .strategy-status {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .strategy-status ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    line-height: 1.2;  /* Adjust this */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2; /* Adjust this */
 }
 
 .strategy-status li {
-    margin: 0;  /* Set margin to zero */
-    padding: 0; /* Set padding to zero */
+  margin: 0; /* Set margin to zero */
+  padding: 0; /* Set padding to zero */
 }
 
 .strategy-status span.bold {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.funTable {
+  width: 50%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 12px;
+  text-align: left;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.funTable th,
+.funTable td {
+  height: 20px; /* Adjust the height */
+  padding: 0px 2px; /* Adjust the padding */
+  text-align: center; /* Align the text to the center */
+}
+
+.funTable tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: #f3f3f3;
+}
+
+.funTable tbody tr:nth-of-type(even) {
+  background-color: #f3e5f5;
+}
+
+.funTable tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.funTable thead {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: center;
+}
+
+.flash {
+  background-color: #ffc107;
+  transition: background-color 0.3s ease;
+}
+
+@keyframes flash {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+
+.flash-increased {
+  animation: flashGreen .3s;
+}
+
+.flash-decreased {
+  animation: flashRed .3s;
+}
+
+@keyframes flashGreen {
+  from { background-color: green; }
+  to { background-color: transparent; }
+}
+
+@keyframes flashRed {
+  from { background-color: red; }
+  to { background-color: transparent; }
 }
 
 
 
-.funTable {
-    width: 50%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 12px;
-    text-align: left;
+.counter {
+  display: flex;
+  justify-content: center;
+}
 
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .funTable th, .funTable td {
-    height: 20px;  /* Adjust the height */
-    padding: 0px 2px;  /* Adjust the padding */
-    text-align: center;  /* Align the text to the center */
-  }
-  
-  .funTable tbody tr {
-    border-bottom: 1px solid #dddddd;
-    background-color: #f3f3f3;
-  }
-  
-  .funTable tbody tr:nth-of-type(even) {
-    background-color: #f3e5f5;
-  }
-  
-  .funTable tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
-  
-  .funTable thead {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: center;
-  }
-  
-  .flash {
-    background-color: #ffc107;
-    transition: background-color 0.3s ease;
-  }
-  
-  @keyframes flash {
-    0%   {background-color: red;}
-    100% {background-color: transparent;}
-  }
-  
-  .flash {
-    animation: flash .4s;
-  }
-  
-  .counter {
-    display: flex;
-    justify-content: center;
-  }
-
-  
 .raceTitle {
-    padding-top: 1em;
-    font-size: 1.5em;
-    margin: 0.83em 0;
-  }
-  .raceTitleTable {
-    padding-top: 1em;
-    font-size: 1em;
-    /* bold font */
-    font-weight: bold;
-    margin: 0.5em 0;
-  }
-  
-  .fundsTable{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
-  }
-  
-  
-  /* .race-card {
+  padding-top: 1em;
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+.raceTitleTable {
+  padding-top: 1em;
+  font-size: 1em;
+  /* bold font */
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.fundsTable {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+/* .race-card {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 16px;
     margin: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   } */
-  
 
-  .video {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-  }
+.video {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
 
-  .latency
-  {
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
-    font-size: 11px;
-  }
+.latency {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 11px;
+}

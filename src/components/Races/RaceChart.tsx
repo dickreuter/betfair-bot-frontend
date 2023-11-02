@@ -123,34 +123,35 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                 <label htmlFor="lastMax">Last Max</label>
             </div>
             <div className="linechart">
-                <LineChart width={chartWidth} height={chartHeight} data={horseDataWithOdds}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                        dataKey="horseId"
-                        angle={-90}
-                        textAnchor="end"
-                        interval={0}
-                        height={150}
-                        style={{
-                            fontSize: '12px',
-                            fontWeight: 'bold',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                        }}
-                    />
-                    <YAxis domain={[0, 1]} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Legend />
-                    {linesVisibility.back && <Line type="none" dataKey="data.back" stroke="#8884d8" dot={{ r: 4 }} />}
-                    {linesVisibility.backMovingAvg && <Line type="none" dataKey="data._back_moving_avg" stroke="#8884d8" strokeDasharray="5 5" />}
-                    {linesVisibility.lay && <Line type="none" dataKey="data.lay" stroke="#82ca9d" dot={{ r: 4 }} />}
-                    {linesVisibility.layMovingAvg && <Line type="none" dataKey="data._lay_moving_avg" stroke="#82ca9d" strokeDasharray="5 5" />}
-                    {linesVisibility.last && <Line type="none" dataKey="data.last" stroke="#ff0000" strokeWidth={4} dot={{ r: 4 }} />} {/* Increased strokeWidth */}
-                    {linesVisibility.lastMovingAvg && <Line type="none" dataKey="data._last_moving_avg" stroke="#ffc658" strokeDasharray="5 5" />}
-                    {linesVisibility.lastMin && <Line type="none" dataKey="data._last_min" stroke="#ff0000" dot={{ r: 4 }} />}
-                    {linesVisibility.lastMax && <Line type="none" dataKey="data._last_max" stroke="#00ff00" dot={{ r: 4 }} />}
-                </LineChart>
+            <LineChart width={chartWidth} height={chartHeight} data={horseDataWithOdds}>
+    <CartesianGrid strokeDasharray="3 3" />
+    <XAxis
+        dataKey="horseId"
+        angle={-90}
+        textAnchor="end"
+        interval={0}
+        height={150}
+        style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+        }}
+    />
+    <YAxis domain={[0, 1]} />
+    <Tooltip content={<CustomTooltip />} />
+    <Legend />
+    {linesVisibility.back && <Line type="monotone" dataKey="data.back" stroke="#000" strokeWidth={2} dot={false} />}
+    {linesVisibility.lay && <Line type="monotone" dataKey="data.lay" stroke="#000" strokeWidth={2} dot={false} />}
+    {linesVisibility.backMovingAvg && <Line type="monotone" dataKey="data._back_moving_avg" stroke="#008000" strokeWidth={2} dot={false} />} {/* Green and thicker */}
+    {linesVisibility.layMovingAvg && <Line type="monotone" dataKey="data._lay_moving_avg" stroke="#008000" strokeWidth={2} dot={false} />} {/* Green and thicker */}
+    {linesVisibility.last && <Line type="none" dataKey="data.last" stroke="#ff0000" strokeWidth={4} dot={{ r: 4 }} />} {/* Increased strokeWidth */}
+    {linesVisibility.lastMovingAvg && <Line type="none" dataKey="data._last_moving_avg" stroke="#ffc658" strokeDasharray="5 5" />}
+    {linesVisibility.lastMin && <Line type="none" dataKey="data._last_min" stroke="#ff0000" dot={{ r: 4 }} />}
+    {linesVisibility.lastMax && <Line type="none" dataKey="data._last_max" stroke="#00ff00" dot={{ r: 4 }} />}
+</LineChart>
+
 
 
             </div>

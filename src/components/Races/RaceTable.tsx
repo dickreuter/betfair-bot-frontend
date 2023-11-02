@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { getStrategyStatusColor } from '../../helper/Constants';
 import { RaceProps } from '../../helper/Types'; // Assuming you will create this types file
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 import RaceIcon from './RaceIcon';
-import { getStrategyStatusColor } from '../../helper/Constants';
 
 export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [prevHorseData, setPrevHorseData] = useState(horseData);
@@ -14,8 +14,9 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
 
         horseData.forEach((horse, index) => {
             ['back', 'lay', 'last'].forEach((field) => {
-                if (isValueChanged(horse.data[field], prevHorseData[index]?.data[field])) {
-                    newFlashingCells[`${index}_${field}`] = true;
+                const changeType = getChangeType(horse.data[field], prevHorseData[index]?.data[field]);
+                if (changeType !== 'none') {
+                    newFlashingCells[`${index}_${field}`] = changeType;
 
                     // Remove 'flash' class after 1 second
                     setTimeout(() => {
@@ -35,6 +36,20 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
 
     const isValueChanged = (currentValue, previousValue) => {
         return currentValue !== previousValue;
+    };
+    const flashClass = (changeType) => {
+        return changeType === 'increased' || changeType === 'decreased' ? `flash-${changeType}` : '';
+    };
+
+    const getChangeType = (currentValue, previousValue) => {
+        if (currentValue > previousValue) {
+            return 'increased';
+        } else if (currentValue < previousValue) {
+            return 'decreased';
+        } else if (currentValue === previousValue) {
+            return 'same';
+        }
+        return 'none'; // No change or unable to determine (e.g., first render)
     };
 
     let selectionIdPriceMap = {};
@@ -143,9 +158,9 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                     {horseData.map((horse, index) => (
                         <tr key={index} style={{ backgroundColor: getColorFromHorseId(horse.horseId) }}>
                             <td>{horse.horseId}</td>
-                            <td className={flashingCells[`${index}_last`] ? 'flash' : ''}>{horse.data.last}</td>
-                            <td className={flashingCells[`${index}_back`] ? 'flash' : ''}>{horse.data.back}</td>
-                            <td className={flashingCells[`${index}_lay`] ? 'flash' : ''}>{horse.data.lay}</td>
+                            <td className={flashClass(flashingCells[`${index}_last`])}>{horse.data.last}</td>
+                            <td className={flashClass(flashingCells[`${index}_back`])}>{horse.data.back}</td>
+                            <td className={flashClass(flashingCells[`${index}_lay`])}>{horse.data.lay}</td>
                             <td className={flashingCells[`${index}_last_ema`] ? 'flash' : ''}>
                                 <div>
                                     {horse.data._last_ema}
@@ -178,7 +193,8 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                                 {selectionIdPriceMap[horse.horseId] || ''} {/* New Cell */}
                             </td>
                         </tr>
-                    ))}
+                    ))
+                    }
                 </tbody>
             </table>
         </div>

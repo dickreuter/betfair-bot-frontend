@@ -7,9 +7,7 @@ Race view
 
 You can select between multiple views to see current and upcoming races.
 
-.. figure:: docs/view1.gif
-
-.. figure:: docs/view2.gif
+.. figure:: docs/view.gif
 
 
 Strategy Editor
