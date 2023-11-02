@@ -31,8 +31,8 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         if (!strategyStatus || typeof strategyStatus !== 'object') {
             return <div>Error: Strategy status is not available</div>;
         }
-    
-    
+
+
 
         return (
             <div className="strategy-status">
@@ -142,17 +142,19 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
                     <YAxis domain={[0, 1]} />
                     <Tooltip content={<CustomTooltip />} />
                     <Legend />
-                    {linesVisibility.back && <Line type="monotone" dataKey="data.back" stroke="#8884d8" dot={{ r: 4 }} />}
-                    {linesVisibility.backMovingAvg && <Line type="monotone" dataKey="data._back_moving_avg" stroke="#8884d8" strokeDasharray="5 5" />}
-                    {linesVisibility.lay && <Line type="monotone" dataKey="data.lay" stroke="#82ca9d" dot={{ r: 4 }} />}
-                    {linesVisibility.layMovingAvg && <Line type="monotone" dataKey="data._lay_moving_avg" stroke="#82ca9d" strokeDasharray="5 5" />}
-                    {linesVisibility.last && <Line type="monotone" dataKey="data.last" stroke="#ffc658" dot={{ r: 4 }} />}
-                    {linesVisibility.lastMovingAvg && <Line type="monotone" dataKey="data._last_moving_avg" stroke="#ffc658" strokeDasharray="5 5" />}
-                    {linesVisibility.lastMin && <Line type="monotone" dataKey="data._last_min" stroke="#ff0000" dot={{ r: 4 }} />}
-                    {linesVisibility.lastMax && <Line type="monotone" dataKey="data._last_max" stroke="#00ff00" dot={{ r: 4 }} />}
-
+                    {linesVisibility.back && <Line type="none" dataKey="data.back" stroke="#8884d8" dot={{ r: 4 }} />}
+                    {linesVisibility.backMovingAvg && <Line type="none" dataKey="data._back_moving_avg" stroke="#8884d8" strokeDasharray="5 5" />}
+                    {linesVisibility.lay && <Line type="none" dataKey="data.lay" stroke="#82ca9d" dot={{ r: 4 }} />}
+                    {linesVisibility.layMovingAvg && <Line type="none" dataKey="data._lay_moving_avg" stroke="#82ca9d" strokeDasharray="5 5" />}
+                    {linesVisibility.last && <Line type="none" dataKey="data.last" stroke="#ff0000" strokeWidth={4} dot={{ r: 4 }} />} {/* Increased strokeWidth */}
+                    {linesVisibility.lastMovingAvg && <Line type="none" dataKey="data._last_moving_avg" stroke="#ffc658" strokeDasharray="5 5" />}
+                    {linesVisibility.lastMin && <Line type="none" dataKey="data._last_min" stroke="#ff0000" dot={{ r: 4 }} />}
+                    {linesVisibility.lastMax && <Line type="none" dataKey="data._last_max" stroke="#00ff00" dot={{ r: 4 }} />}
                 </LineChart>
+
+
             </div>
+
         </div>
     );
 };

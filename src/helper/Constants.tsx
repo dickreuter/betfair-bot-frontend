@@ -6,7 +6,7 @@ export const getStrategyStatusColor = (key, value) => {
         return { color: 'orange' };
     } else if (key.includes('Strategy only for') || value.includes('Strategy only for')) {
         return { color: 'lightgrey' };
-    } else if (key.includes('Already bet') || value.includes('Already bet')) {
+    } else if (key.includes('Already bet') || value.includes('Already bet') || key.includes('Bets placed') ||value.includes('Bets placed')) {
         return { color: 'white', backgroundColor: 'red' };
     } else if (key.includes('Processing') || value.includes('Processing')) {
         return { color: 'green' };

@@ -20,11 +20,17 @@ const RaceStreamer: React.FC = () => {
   const [raceData, setRaceData] = useState<RaceData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastSortedTime, setLastSortedTime] = useState<number>(Date.now());
-  const [templateType, setTemplateType] = useState("template1");
-  const handleTemplateChange = (event) => {
-    setTemplateType(event.target.value);
-  };
 
+  const handleTemplateChange = (event) => {
+    const newTemplateType = event.target.value;
+    setTemplateType(newTemplateType);
+    document.cookie = `templateType=${encodeURIComponent(newTemplateType)}; path=/`;
+  };
+  const getTemplateTypeFromCookie = () => {
+    const templateTypeMatch = document.cookie.match('(^|;)\\s*templateType\\s*=\\s*([^;]+)');
+    return templateTypeMatch ? decodeURIComponent(templateTypeMatch[2]) : "chart";
+  };
+  const [templateType, setTemplateType] = useState(getTemplateTypeFromCookie());
   let retryCount = 0;
 
   const stableSort = (arr) => {
@@ -179,23 +185,22 @@ const RaceStreamer: React.FC = () => {
         </div>
       )}
 
-
+      <div className="h1">Races</div>
       <div className="dropdown-container" style={{ textAlign: "center", marginBottom: "0px", marginTop: "10px" }}>
         <label>Select view: </label>
         <select onChange={handleTemplateChange} value={templateType}>
-          <option value="template2">Chart</option>
-          <option value="template1">Momentum Tables</option>
+          <option value="chart">Graphical Chart</option>
+          <option value="table">Momentum Tables</option>
         </select>
       </div>
 
-      <div className="h1">Races</div>
       {
         isLoading ? (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <CircularProgress />
           </div>
         ) : (
-          templateType === "template1" ? (
+          templateType === "table" ? (
             <div className="container-fluid">
               <div className="row">
                 {raceData.map((race) => (
