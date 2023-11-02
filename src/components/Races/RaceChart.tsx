@@ -5,6 +5,8 @@ import '../../views/Races.css';
 import { CustomTooltip } from '../CustomTooltip';
 import { OverrunComponent } from '../Overrun';
 import RaceIcon from './RaceIcon';
+import { getStrategyStatusColor } from '../../helper/Constants';
+
 
 export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [linesVisibility, setLinesVisibility] = useState({
@@ -29,15 +31,20 @@ export const RaceChart: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         if (!strategyStatus || typeof strategyStatus !== 'object') {
             return <div>Error: Strategy status is not available</div>;
         }
+    
+    
 
         return (
             <div className="strategy-status">
                 <ul>
-                    {Object.keys(strategyStatus).map((key) => (
-                        <li key={key}>
-                            <span>{key}:</span> <span>{strategyStatus[key]}</span>
-                        </li>
-                    ))}
+                    {Object.keys(strategyStatus).map((key) => {
+                        const style = getStrategyStatusColor(key, strategyStatus[key]);
+                        return (
+                            <li key={key} style={style}>
+                                <span>{key}:</span> <span>{strategyStatus[key]}</span>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         );

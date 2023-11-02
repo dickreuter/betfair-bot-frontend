@@ -1,6 +1,22 @@
 export const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'betfair-bot.com:7779';
 
 
+export const getStrategyStatusColor = (key, value) => {
+    if (key.includes('Time window') || value.includes('Time window')) {
+        return { color: 'orange' };
+    } else if (key.includes('Strategy only for') || value.includes('Strategy only for')) {
+        return { color: 'lightgrey' };
+    } else if (key.includes('Already bet') || value.includes('Already bet')) {
+        return { color: 'white', backgroundColor: 'red' };
+    } else if (key.includes('Processing') || value.includes('Processing')) {
+        return { color: 'green' };
+    } else if (key.includes('not part of') || value.includes('not part of')) {
+        return { color: 'lightgrey' };
+    } else {
+        return { color: 'black' };
+    }
+};
+
 export const DATA_ATTRIBUTES = [
     "Horses per race",
     "Last Traded price",
@@ -14,7 +30,7 @@ export const DATA_ATTRIBUTES = [
     "Lay momentum",
     "Last trade momentum",
 
-    "Avg $",    
+    "Avg $",
     "Bar",
     "Career",
     "Last 10",

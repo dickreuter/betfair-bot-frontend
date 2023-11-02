@@ -3,6 +3,7 @@ import { RaceProps } from '../../helper/Types'; // Assuming you will create this
 import '../../views/Races.css';
 import { OverrunComponent } from '../Overrun';
 import RaceIcon from './RaceIcon';
+import { getStrategyStatusColor } from '../../helper/Constants';
 
 export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, overrunBack, overrunLay, overrunLast, secondsToStart, strategyStatus, latency, orders }) => {
     const [prevHorseData, setPrevHorseData] = useState(horseData);
@@ -58,11 +59,14 @@ export const RaceTable: React.FC<RaceProps> = ({ raceId, raceTitle, horseData, o
         return (
             <div className="strategy-status">
                 <ul>
-                    {Object.keys(strategyStatus).map((key) => (
-                        <li key={key}>
-                            <span>{key}:</span> <span>{strategyStatus[key]}</span>
-                        </li>
-                    ))}
+                    {Object.keys(strategyStatus).map((key) => {
+                        const style = getStrategyStatusColor(key, strategyStatus[key]);
+                        return (
+                            <li key={key} style={style}>
+                                <span>{key}:</span> <span>{strategyStatus[key]}</span>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         );
