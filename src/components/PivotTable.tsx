@@ -7,7 +7,7 @@ import Plot from 'react-plotly.js';
 import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
 import Cookies from 'js-cookie';
 import CircularProgress from '@mui/material/CircularProgress';
-import { API_URL } from '../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../helper/Constants';
 import './Table.css';
 import { useAuthUser } from 'react-auth-kit';
 
@@ -72,7 +72,7 @@ const PivotTable = ({ endpoint }) => {
 
   useEffect(() => {
     axios
-    .post(`http://${API_URL}/${endpoint}`, 
+    .post(`http${HTTP_PREFIX}://${API_URL}/${endpoint}`, 
     {  },
     {
       headers: {

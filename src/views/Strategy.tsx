@@ -2,7 +2,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useRef, useState } from 'react';
 import ConditionsManager from '../components/StrategyEditor/ConditionsManager';
-import { API_URL, DATA_ATTRIBUTES } from '../helper/Constants';
+import { API_URL, DATA_ATTRIBUTES, HTTP_PREFIX } from '../helper/Constants';
 import CustomSlider from './CustomSlider';
 import './Strategy.css';
 import { useAuthUser } from 'react-auth-kit';
@@ -137,7 +137,7 @@ const Strategy = () => {
 
     // Make POST request to /save_strategy
     axios.post(
-      `http://${API_URL}/save_strategy`,
+      `http${HTTP_PREFIX}://${API_URL}/save_strategy`,
       { strategy_config: data },
       {
         headers: {
@@ -160,7 +160,7 @@ const Strategy = () => {
 
   const load_available_strategies = () => {
     axios.post(
-      `http://${API_URL}/get_strategies`,
+      `http${HTTP_PREFIX}://${API_URL}/get_strategies`,
       {},
       {
         headers: {
@@ -193,7 +193,7 @@ const Strategy = () => {
     // Initialize data with defaultAttributesConfig
     setData(defaultAttributesConfig);
 
-    axios.post(`http://${API_URL}/load_strategy`,
+    axios.post(`http${HTTP_PREFIX}://${API_URL}/load_strategy`,
       { strategy_name: strategyToLoad },
       { headers: { Authorization: `Bearer ${tokenRef.current}` } }
     )

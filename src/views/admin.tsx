@@ -2,7 +2,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useRef, useState } from 'react';
 import { useAuthUser } from 'react-auth-kit';
-import { API_URL } from '../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../helper/Constants';
 import withAuth from '../routes/withAuth';
 import './Strategy.css';
 
@@ -60,7 +60,7 @@ const Admin = () => {
 
       // Make POST request to /save
       axios.post(
-        `http://${API_URL}/save_admin`,
+        `http${HTTP_PREFIX}://${API_URL}/save_admin`,
         { admin_dict: data },
         {
           headers: {
@@ -86,7 +86,7 @@ const Admin = () => {
     console.log("data before loading:", data)
 
     axios.post(
-      `http://${API_URL}/load_admin`,
+      `http${HTTP_PREFIX}://${API_URL}/load_admin`,
       {},
       {
         headers: {

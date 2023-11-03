@@ -4,7 +4,7 @@ import 'react-tabulator/lib/styles.css';
 import 'react-tabulator/css/tabulator.min.css';
 import { ReactTabulator } from 'react-tabulator';
 import CircularProgress from '@mui/material/CircularProgress';
-import { API_URL } from '../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../helper/Constants';
 import './Table.css';
 import { useAuthUser } from 'react-auth-kit';
 
@@ -31,7 +31,7 @@ const Table = ({ endpoint }: { endpoint: string }) => {
   
   useEffect(() => {
     axios
-    .post(`http://${API_URL}/${endpoint}`, 
+    .post(`http${HTTP_PREFIX}://${API_URL}/${endpoint}`, 
     {  },
     {
       headers: {

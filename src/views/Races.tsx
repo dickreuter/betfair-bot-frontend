@@ -6,7 +6,7 @@ import Funds from '../components/Funds';
 import OpenOrdersTable from '../components/OpenOrdersTable';
 import { RaceChart } from '../components/Races/RaceChart';
 import { RaceTable } from '../components/Races/RaceTable';
-import { API_URL } from '../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../helper/Constants';
 import { RaceData } from '../helper/Types';
 
 const MAX_RETRIES = 999999;
@@ -70,7 +70,7 @@ const RaceStreamer: React.FC = () => {
 
 
   const connectSocket = () => {
-    const socket = new WebSocket(`ws://${API_URL}/ff_cache`);
+    const socket = new WebSocket(`ws${HTTP_PREFIX}://${API_URL}/ff_cache`);
 
     socket.onopen = () => {
       const message = JSON.stringify({ token: tokenRef.current });

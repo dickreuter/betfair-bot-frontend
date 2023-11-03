@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useSignIn } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../../helper/Constants';
 
 const useAuthSignIn = () => {
   const signIn = useSignIn();
@@ -15,7 +15,7 @@ const useAuthSignIn = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post(`http://${API_URL}/login`, formData);
+      const res = await axios.post(`http${HTTP_PREFIX}://${API_URL}/login`, formData);
       setIsLoading(false);
 
       if (res.status === 200 && signIn({

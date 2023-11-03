@@ -1,6 +1,7 @@
-export const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'betfair-bot.com:7779';
+export const API_URL = import.meta.env.VITE_REACT_APP_API_URL || 'www.deepermind-bettingbot.com:7779';
+export const HTTP_PREFIX = import.meta.env.VITE_REACT_APP_API_URL_PREFIX_HTTPS? '' : 's';
 
-
+console.log(HTTP_PREFIX)
 export const getStrategyStatusColor = (key, value) => {
     if (key.includes('Time window') || value.includes('Time window')) {
         return { color: 'orange' };

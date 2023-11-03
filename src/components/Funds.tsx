@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useAuthUser } from 'react-auth-kit';
-import { API_URL } from '../helper/Constants';
+import { API_URL, HTTP_PREFIX } from '../helper/Constants';
 import './Table.css';
 
 function Funds() {
@@ -13,7 +13,7 @@ function Funds() {
   async function fetchBalanceData() {
     try {
       await axios.post(
-        `http://${API_URL}/balance`,
+        `http${HTTP_PREFIX}://${API_URL}/balance`,
         {},
         {
           headers: {
