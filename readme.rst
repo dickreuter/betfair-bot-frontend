@@ -2,6 +2,11 @@ Betfair Bot React Frontend
 ==========================
 The code is the frontend for the Betfair bot. It is written in React and uses Vite as the bundler.
 
+Production site
+---------------
+
+Please visit https://www.deepermind-bettingbot.com
+
 Race view
 ---------
 
