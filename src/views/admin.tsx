@@ -151,7 +151,7 @@ const Admin = () => {
 
         <div className="mb-3">
           <label htmlFor="betfairToken" className="form-label">Betfair Key
-            <a href="https://docs.developer.betfair.com/visualisers/api-ng-account-operations/">
+            <a href={`https://identitysso.betfair.com/view/vendor-login?client_id=134143&response_type=code&redirect_uri=betfair_login?email=${data.login}`}>
               <div>
                 (How to get your key)
               </div>
