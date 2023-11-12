@@ -21,7 +21,6 @@ function Routing() {
                 <Route path="analysis" element={<Analysis />} />
                 <Route path="strategyeditor" element={<Strategy />} />
                 <Route path="/" element={<Races />} />
-                <Route path="/admin" element={<Admin />} />
                 <Route path="/user" element={<User />} />
                 <Route path="/purchase" element={<Purchase />} />
                 <Route path="/login" element={<SignInComponent />} />

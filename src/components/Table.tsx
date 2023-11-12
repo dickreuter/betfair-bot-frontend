@@ -76,7 +76,7 @@ const Table = ({ endpoint }: { endpoint: string }) => {
       field: key,
       sorter: 'string',
       headerFilter: 'input',
-      formatter: key === 'bet_outcome' ? outcomeFormatter : null,
+      formatter: key === 'betOutcome' ? outcomeFormatter : null,
       formatterParams: {
           target: "_blank",
       },

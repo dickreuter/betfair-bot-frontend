@@ -180,9 +180,14 @@ const RaceStreamer: React.FC = () => {
           <Funds />
         </div>
       ) : (
-        <div className='video'>
-          <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        <>
+          <div className='video'>
+            <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div>
+            Trial Version. Data is delayed.
+          </div>
+        </>
       )}
 
       <div className="h1">Races</div>

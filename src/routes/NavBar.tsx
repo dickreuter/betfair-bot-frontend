@@ -41,7 +41,7 @@ const NavBar = () => {
                 setLoginEmail('default');
                 signOut();
             }
-        }, 80000);  // 80 seconds
+        }, 8000);  // 80 seconds
 
         return () => clearInterval(interval);  // Cleanup on unmount
     }, []);
@@ -53,7 +53,7 @@ const NavBar = () => {
             </button>
             <a className="navbar-brand" href="/">Deepermind Bettingbot</a>
             <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarTogglerDemo03">
-            <ul className="navbar-nav mr-auto d-flex ml-auto">  {/* Apply ml-auto here */}
+                <ul className="navbar-nav mr-auto d-flex ml-auto">  {/* Apply ml-auto here */}
                     <li className="nav-item">
                         <Link className="nav-link" to="/races">Races</Link>
                     </li>
@@ -77,7 +77,14 @@ const NavBar = () => {
                     {
                         auth ? (
                             <li className="nav-item">
-                                <Link className="nav-link" to="/admin">Admin</Link>
+                                <a
+                                    className="nav-link"
+                                    href={`https://identitysso.betfair.com/view/vendor-login?client_id=134143&response_type=code&redirect_uri=${encodeURIComponent('betfair_login?email=' + email)}`}
+                                    target="_blank" // to open in a new tab
+                                    rel="noopener noreferrer" // for security reasons
+                                >
+                                    Connect
+                                </a>
                             </li>
                         ) : null
                     }

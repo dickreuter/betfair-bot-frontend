@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { API_URL, HTTP_PREFIX } from '../../helper/Constants';
+import Funds from '../Funds';
 
 const BetfairLoginRedirect = () => {
   const location = useLocation();
@@ -37,7 +38,10 @@ const BetfairLoginRedirect = () => {
   return (
     <div>
       {location.search.includes('code') ? (
-        <p>Logging in with Betfair...</p>
+        <>
+          <p>Establishing connection with betfair..... Please wait 2 minutes. If you see your funds status, the connection was successful.</p>
+          <Funds />
+        </>
       ) : (
         <p>No authorization code found in URL.</p>
       )}
