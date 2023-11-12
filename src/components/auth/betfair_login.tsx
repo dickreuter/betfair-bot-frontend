@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { API_URL, HTTP_PREFIX } from '../../helper/Constants';
@@ -6,6 +6,7 @@ import Funds from '../Funds';
 
 const BetfairLoginRedirect = () => {
   const location = useLocation();
+  const [showFunds, setShowFunds] = useState(false);
 
   useEffect(() => {
     // Function to extract the code and email from URL query parameters
@@ -33,14 +34,21 @@ const BetfairLoginRedirect = () => {
     if (code && email) {
       sendCodeAndEmailToBackend(code, email);
     }
+    // Set a timeout to show the Funds component after 10 seconds
+    const timer = setTimeout(() => {
+      setShowFunds(true); // Step 3: Change the state after 10 seconds
+    }, 10000); // 10000 milliseconds = 10 seconds
+
+    // Clear the timeout if the component unmounts
+    return () => clearTimeout(timer);
   }, [location]);
 
   return (
     <div>
       {location.search.includes('code') ? (
         <>
-          <p>Establishing connection with betfair..... Please wait 2 minutes. If you see your funds status, the connection was successful.</p>
-          <Funds />
+          <p>Connection status:</p>
+          {!showFunds ? <p>Verifying connection. Please wait...</p> : <Funds />}
         </>
       ) : (
         <p>No authorization code found in URL.</p>
