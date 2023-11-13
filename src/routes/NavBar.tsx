@@ -20,9 +20,13 @@ const NavBar = () => {
             toggle();
         }
     }
+    useEffect(() => {
+        tokenRef.current = auth?.token || 'default';
+    }, [auth]);
 
     useEffect(() => {
-        const interval = setInterval(async () => {
+        // Function to fetch email
+        const fetchEmail = async () => {
             try {
                 const token = tokenRef.current;
                 const response = await axios.post(
@@ -41,10 +45,18 @@ const NavBar = () => {
                 setLoginEmail('default');
                 signOut();
             }
-        }, 8000);  // 80 seconds
-
-        return () => clearInterval(interval);  // Cleanup on unmount
-    }, []);
+        };
+    
+        // Fetch email immediately on mount
+        fetchEmail();
+    
+        // Then set up interval to fetch email every 8 seconds
+        const interval = setInterval(fetchEmail, 8000);
+    
+        // Cleanup interval on unmount
+        return () => clearInterval(interval);
+    }, [auth]); // Depend on auth state
+    
 
     return (
         <nav className="navbar navbar-expand-sm fixed-top navbar-light bg-light">
