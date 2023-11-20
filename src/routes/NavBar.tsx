@@ -203,7 +203,7 @@ const NavBar = () => {
           )}
           <li className="nav-item">
             <Link className="nav-link" to="/documentation">
-              Documantation
+              Documentation
             </Link>
           </li>
           <li className="nav-item">
