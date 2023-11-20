@@ -5,12 +5,12 @@ import Orders from "../views/Orders"
 import Races from "../views/Races"
 import Strategy from "../views/Strategy"
 import User from "../views/User"
-import Admin from "../views/admin"
 import Purchase from "../views/Purchase"
 import SignInComponent from "../components/auth/SignIn"
 import SignOut from "../components/auth/SignOutButton"
 import BetfairLoginRedirect from "../components/auth/betfair_login"
 import Disconnect from "../components/Disconnect"
+import Documentation from "../components/Documentation"
 
 
 function Routing() {
@@ -27,6 +27,7 @@ function Routing() {
                 <Route path="/login" element={<SignInComponent />} />
                 <Route path="/logout" element={<SignOut />} />
                 <Route path="/disconnect" element={<Disconnect />} />
+                <Route path="/documentation" element={<Documentation />} />
                 <Route path="/betfair_login" element={<BetfairLoginRedirect />} />
             </Routes>
         </div>

@@ -48,19 +48,7 @@ const NavBar = () => {
       }
     };
 
-    // Fetch email immediately on mount
-    fetchEmail();
-
-    // Then set up interval to fetch email every 8 seconds
-    const interval = setInterval(fetchEmail, 8000);
-
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
-  }, [auth]); // Depend on auth state
-
-  useEffect(() => {
-    // Function to fetch betfair connection
-    const fetch_betfair_connection = async () => {
+    const fetchBetfairConnection = async () => {
       try {
         const token = tokenRef.current;
         const response = await axios.post(
@@ -75,24 +63,28 @@ const NavBar = () => {
         const { res } = response.data;
         setBetfairConnected(response.data.isConnected);
         console.log(betfairConnected);
-    } catch (error) {
-      console.error("Failed to get Betfair connection status:", error);
-      // Handle different types of errors here
-      setBetfairConnected(false);
-      // Optional: update UI or alert user
-      signOut();
-    }
-  };
+      } catch (error) {
+        console.error("Failed to get Betfair connection status:", error);
+        // Handle different types of errors here
+        setBetfairConnected(false);
+        // Optional: update UI or alert user
+        signOut();
+      }
+    };
 
     // Fetch email immediately on mount
-    fetch_betfair_connection();
+    fetchEmail();
+    fetchBetfairConnection();
 
     // Then set up interval to fetch email every 8 seconds
-    const interval = setInterval(fetch_betfair_connection, 8000);
+    const interval = setInterval(() => {
+      fetchEmail();
+      fetchBetfairConnection();
+    }, 8000);
 
     // Cleanup interval on unmount
     return () => clearInterval(interval);
-  }, []); // Depend on auth state
+  }, [auth]); // Depend on auth state
 
   useEffect(() => {
     // Function to fetch email
@@ -166,21 +158,7 @@ const NavBar = () => {
               Analysis
             </Link>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="https://discord.gg/QdY3Ddyj">
-              Support chat
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="nav-link"
-              href="https://github.com/dickreuter/betfair-bot-frontend"
-            >
-              Source code
-            </a>
-          </li>
-          {
-          auth
+          {auth
             ? !betfairConnected && (
                 <li className="nav-item">
                   <a
@@ -223,6 +201,24 @@ const NavBar = () => {
               </li>
             </>
           )}
+          <li className="nav-item">
+            <Link className="nav-link" to="/documentation">
+              Documantation
+            </Link>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="https://discord.gg/QdY3Ddyj">
+              Support chat
+            </a>
+          </li>
+          <li className="nav-item">
+            <a
+              className="nav-link"
+              href="https://github.com/dickreuter/betfair-bot-frontend"
+            >
+              Source code
+            </a>
+          </li>
           <li className="nav-item ml-auto">
             {" "}
             {/* Right align this nav item */}
@@ -231,7 +227,7 @@ const NavBar = () => {
               href="http://www.deepermind-pokerbot.com"
               onClick={handleNavLinkClick}
             >
-              Poker
+              Pokerbot
             </a>
           </li>
         </ul>

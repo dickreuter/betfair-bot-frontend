@@ -101,7 +101,6 @@ export const DATA_ATTRIBUTES = [
     "Last Start Finish Position",
     "Last Start Margin",
     "Last Start Prize Money",
-    "Num",
     "Prize Money",
     "This Condition Place Strike Rate",
     "This Condition Places",

@@ -1,0 +1,135 @@
+{
+  "data_attributes": [
+    {
+      "name": "Horses per race",
+      "example": 12,
+      "description": "Total number of horses participating in a race."
+    },
+    {
+      "name": "Last Traded price",
+      "example": 4.5,
+      "description": "The most recent price at which a bet was matched on a horse."
+    },
+    {
+      "name": "Current lay price",
+      "example": 4.7,
+      "description": "The current price available for laying a bet on a horse."
+    },
+    {
+      "name": "Current back price",
+      "example": 4.4,
+      "description": "The current price available for backing a horse."
+    },
+    {
+      "name": "Last total odds",
+      "example": 1.0,
+      "description": "The last recorded total odds for a horse. 1.0 means 100%"
+    },
+    {
+      "name": "Back total odds",
+      "example": 1.0,
+      "description": "The total odds for backing all horses in a race. 1.0 means 100%"
+    },
+    {
+      "name": "Lay total odds",
+      "example": 1.0,
+      "description": "The total odds for laying all horses in a race. 1.0 means 100%"
+    },
+    {
+      "name": "Back momentum",
+      "example": "0",
+      "description": "Trend or movement in the back prices of a horse. Example values can see in the momentum tables."
+    },
+    {
+      "name": "Lay momentum",
+      "example": "0",
+      "description": "Trend or movement in the lay prices of a horse. Example values can see in the momentum tables."
+    },
+    {
+      "name": "Last trade momentum",
+      "example": "0",
+      "description": "Trend in the last traded price. Example values can see in the momentum tables."
+    },
+    {
+      "name": "Avg $",
+      "example": 500,
+      "description": "Average amount of money wagered."
+    },
+    {
+      "name": "Bar",
+      "example": 3,
+      "description": "The barrier number or gate position from where a horse starts the race."
+    },
+    {
+      "name": "Career",
+      "example": 25,
+      "description": "The total number of races a horse has participated in."
+    },
+    {
+      "name": "Last 10",
+      "example": "31245",
+      "description": "Performance record of the horse in its last 10 races."
+    },
+    {
+      "name": "Number",
+      "example": 7,
+      "description": "The saddlecloth number assigned to the horse."
+    },
+    {
+      "name": "Odds",
+      "example": 15.0,
+      "description": "The betting odds for the horse."
+    },
+    {
+      "name": "P%",
+      "example": "10",
+      "description": "The percentage probability of the horse winning according to betting odds in percentage."
+    },
+    {
+      "name": "Rtg",
+      "example": 78,
+      "description": "Rating assigned to a horse based on its performance."
+    },
+    {
+      "name": "W%",
+      "example": "25",
+      "description": "Win percentage of the horse in its career. Values are in percentage"
+    },
+    {
+      "name": "Wgt",
+      "example": "57",
+      "description": "Weight carried by the horse in a race, including the jockey and gear. Values are in kg."
+    },
+    {
+      "name": "Age",
+      "example": 4,
+      "description": "Age of the horse. Typically ranges from 3 to 10 years for racing horses."
+    },
+    {
+      "name": "Apprentice",
+      "example": "Yes",
+      "description": "Indicates if the jockey is an apprentice. Affects weight allowances."
+    },
+    {
+      "name": "Average Prize Money",
+      "example": 10000,
+      "description": "Average prize money earned per race."
+    },
+    {
+      "name": "Barrier",
+      "example": 5,
+      "description": "The starting gate position for the horse in a race."
+    },
+    {
+      "name": "Best Fixed Odds",
+      "example": 8.0,
+      "description": "The best fixed odds available for the horse."
+    },
+    {
+      "name": "BetEasy Odds",
+      "example": 7.5,
+      "description": "Odds offered by the BetEasy bookmaker."
+    }
+
+  ]
+}
