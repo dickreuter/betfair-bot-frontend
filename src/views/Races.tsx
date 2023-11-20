@@ -185,7 +185,7 @@ const RaceStreamer: React.FC = () => {
             <iframe src="https://app.colossyan.com/embed/4b33b5ca-6c65-4fbb-811d-32a4a6c2c79e" width="730" height="415" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div>
-            Trial Version. Data is delayed.
+            Trial Version. Data is delayed | www.begambleaware.org | Age 18+ only.
           </div>
         </>
       )}
@@ -198,6 +198,10 @@ const RaceStreamer: React.FC = () => {
           <option value="table">Momentum Tables</option>
         </select>
       </div>
+
+      <did>
+
+      </did>
 
       {
         isLoading ? (

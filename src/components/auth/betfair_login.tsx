@@ -5,7 +5,7 @@ import { API_URL, HTTP_PREFIX } from '../../helper/Constants';
 import Funds from '../Funds';
 
 const BetfairLoginRedirect = () => {
-  const location = useLocation(); 
+  const location = useLocation();
   const [showFunds, setShowFunds] = useState(false);
 
   useEffect(() => {

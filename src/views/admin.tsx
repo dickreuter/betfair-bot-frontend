@@ -131,7 +131,7 @@ const Admin = () => {
           <div className="invalid-feedback">
             Please provide a valid email.
           </div>
-        </div>
+      </div>
 
         <div className="mb-3">
           <label htmlFor="betfairLogin" className="form-label">Betfair Login</label>

@@ -10,6 +10,7 @@ import Purchase from "../views/Purchase"
 import SignInComponent from "../components/auth/SignIn"
 import SignOut from "../components/auth/SignOutButton"
 import BetfairLoginRedirect from "../components/auth/betfair_login"
+import Disconnect from "../components/Disconnect"
 
 
 function Routing() {
@@ -25,6 +26,7 @@ function Routing() {
                 <Route path="/purchase" element={<Purchase />} />
                 <Route path="/login" element={<SignInComponent />} />
                 <Route path="/logout" element={<SignOut />} />
+                <Route path="/disconnect" element={<Disconnect />} />
                 <Route path="/betfair_login" element={<BetfairLoginRedirect />} />
             </Routes>
         </div>

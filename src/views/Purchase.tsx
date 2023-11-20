@@ -33,7 +33,7 @@ function PaymentCards() {
                                 </div>
                                 <div className="items">
                                     <ul><br />
-                                        <li>Stream races in real time</li>
+                                        <li>Stream races delayed</li>
                                         <li>Create Strategies</li>
                                         <li>Place hypothetical dummy bets to evaluate strategy</li>
                                         <li>Analyze results</li>
@@ -65,6 +65,8 @@ function PaymentCards() {
                                         <li>Access to all strategies</li>
                                         <li>Edit strategies</li>
                                         <li>Create custom strategies</li>
+                                        <br />
+                                        <li>Get free licence to deepermind-pokerbot.com </li>
                                     </ul>
                                 </div>
                             </div>
@@ -92,6 +94,8 @@ function PaymentCards() {
                                         <li>Access to all strategies</li>
                                         <li>Edit strategies</li>
                                         <li>Create custom strategies</li>
+                                        <br />
+                                        <li>Get free licence to deepermind-pokerbot.com </li>
                                     </ul>
                                 </div>
                             </div>
@@ -133,6 +137,8 @@ function PaymentCards() {
                                         <li>Access to all strategies</li>
                                         <li>Edit strategies</li>
                                         <li>Create custom strategies</li>
+                                        <br />
+                                        <li>Get free licence to deepermind-pokerbot.com </li>
                                     </ul>
                                 </div>
                             </div>
@@ -159,6 +165,8 @@ function PaymentCards() {
                                         <li>Access to all strategies</li>
                                         <li>Edit strategies</li>
                                         <li>Create custom strategies</li>
+                                        <br />
+                                        <li>Get free licence to deepermind-pokerbot.com </li>
                                     </ul>
                                 </div>
                             </div>
