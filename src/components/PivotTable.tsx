@@ -92,7 +92,11 @@ const PivotTable = ({ endpoint }) => {
   useEffect(() => {
     if (Object.keys(pivotState).length !== 0) {
       const stateToSave = extractStateToSave(pivotState);
-      Cookies.set(cookieName, JSON.stringify(stateToSave), { expires: 7 });
+      Cookies.set(cookieName, JSON.stringify(stateToSave), {
+        expires: 7, // 7 days until the cookie expires
+        secure: true, // Ensure cookie is sent only over HTTPS
+        sameSite: 'Strict' // Strictly restrict cookie to the same site
+      });
     }
   }, [pivotState]);
 
