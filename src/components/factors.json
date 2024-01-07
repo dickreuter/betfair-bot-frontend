@@ -23,17 +23,17 @@
     {
       "name": "Last total odds",
       "example": 1.0,
-      "description": "The last recorded total odds for a horse. 1.0 means 100%"
+      "description": "The last recorded total odds for a horse. 1.0 means 100%. if the odds do not add up to 1, there is an arbitrage opportunity. If total odds add up to more than 1, you can lay all runners at a guaranteed profit. Similar if odds add u to less than 1, you can back all horses at a guarnateed profit."
     },
     {
       "name": "Back total odds",
       "example": 1.0,
-      "description": "The total odds for backing all horses in a race. 1.0 means 100%"
+      "description": "The total odds for backing all horses in a race. 1.0 means 100%. if the odds do not add up to 1, there is an arbitrage opportunity. If total odds add up to more than 1, you can lay all runners at a guaranteed profit. Similar if odds add u to less than 1, you can back all horses at a guarnateed profit."
     },
     {
       "name": "Lay total odds",
       "example": 1.0,
-      "description": "The total odds for laying all horses in a race. 1.0 means 100%"
+      "description": "The total odds for laying all horses in a race. 1.0 means 100%. if the odds do not add up to 1, there is an arbitrage opportunity. If total odds add up to more than 1, you can lay all runners at a guaranteed profit. Similar if odds add u to less than 1, you can back all horses at a guarnateed profit."
     },
     {
       "name": "Back momentum",
@@ -113,7 +113,7 @@
     {
       "name": "Average Prize Money",
       "example": 10000,
-      "description": "Average prize money earned per race."
+      "description": "Average prize money earned per race in USD."
     },
     {
       "name": "Barrier",
@@ -129,7 +129,146 @@
       "name": "BetEasy Odds",
       "example": 7.5,
       "description": "Odds offered by the BetEasy bookmaker."
+    },
+    {
+      "name": "Career Place Strike Rate",
+      "example": "25",
+      "description": "The horse's rate of finishing in the top three in its career in percentage."
+    },
+    {
+      "name": "Career Placings",
+      "example": 10,
+      "description": "Total number of top-three finishes in a horse's career."
+    },
+    {
+      "name": "Career Prize Money",
+      "example": 100000,
+      "description": "Total prize money earned in a horse's career."
+    },
+    {
+      "name": "Career ROI",
+      "example": "20",
+      "description": "Return on investment for betting on this horse across its career."
+    },
+    {
+      "name": "Career Runs",
+      "example": 30,
+      "description": "Total number of races run in the horse's career."
+    },
+    {
+      "name": "Career Strike Rate",
+      "example": "15",
+      "description": "The horse's win rate in its career in percentage."
+    },
+    {
+      "name": "Career Wins",
+      "example": 5,
+      "description": "Total number of races won in the horse's career."
+    },
+    {
+      "name": "Dry Track ROI",
+      "example": "30",
+      "description": "Return on investment for the horse on dry tracks in percentage."
+    },
+    {
+      "name": "Dry Track Runs",
+      "example": 20,
+      "description": "Number of races run by the horse on dry tracks."
+    },
+    {
+      "name": "Dry Track Strike Rate",
+      "example": "35",
+      "description": "The win rate of the horse on dry tracks in percentage."
+    },
+    {
+      "name": "Dry Track Wins",
+      "example": 7,
+      "description": "Number of wins by the horse on dry tracks."
+    },
+    {
+      "name": "Handicap Rating",
+      "example": 78,
+      "description": "The rating assigned to a horse based on its performance, used to determine its handicap weight in races."
+    },
+    {
+      "name": "Jockey 12 Month Avg Horse Earnings",
+      "example": 20000,
+      "description": "Average earnings per horse ridden by the jockey over the last 12 months."
+    },
+    {
+      "name": "Jockey 12 Month Horse Earnings",
+      "example": 300000,
+      "description": "Total earnings of all horses ridden by the jockey over the last 12 months."
+    },
+    {
+      "name": "Jockey 12 Months Place Strike Rate",
+      "example": "30",
+      "description": "The jockey's rate of finishing in the top three over the last 12 months in percentage."
+    },
+    {
+      "name": "Jockey 12 Months Places",
+      "example": 25,
+      "description": "Total number of top-three finishes by the jockey over the last 12 months."
+    },
+    {
+      "name": "Jockey 12 Months ROI",
+      "example": "15",
+      "description": "Return on investment for betting on horses ridden by this jockey over the last 12 months in percentage."
+    },
+    {
+      "name": "Jockey 12 Months Starts",
+      "example": 80,
+      "description": "Total number of races started by the jockey over the last 12 months."
+    },
+    {
+      "name": "Jockey 12 Months Strike Rate",
+      "example": "20",
+      "description": "Win rate of the jockey over the last 12 months in percentage."
+    },
+    {
+      "name": "Jockey 12 Months Wins",
+      "example": 16,
+      "description": "Total number of wins by the jockey over the last 12 months."
+    },
+    {
+      "name": "Jockey Last 100 Avg Horse Earnings",
+      "example": 15000,
+      "description": "Average earnings per horse ridden by the jockey in their last 100 races."
+    },
+    {
+      "name": "Jockey Last 100 Horse Earnings",
+      "example": 250000,
+      "description": "Total earnings of all horses ridden by the jockey in their last 100 races."
+    },
+    {
+      "name": "Jockey Last 100 Place Strike Rate",
+      "example": "35",
+      "description": "The jockey's rate of finishing in the top three in their last 100 races in percentage."
+    },
+    {
+      "name": "Jockey Last 100 Places",
+      "example": 40,
+      "description": "Total number of top-three finishes by the jockey in their last 100 races."
+    },
+    {
+      "name": "Jockey Last 100 ROI",
+      "example": "18",
+      "description": "Return on investment for betting on horses ridden by this jockey in their last 100 races in percentage."
+    },
+    {
+      "name": "Jockey Last 100 Starts",
+      "example": 100,
+      "description": "Total number of races started by the jockey in their last 100 races."
+    },
+    {
+      "name": "Jockey Last 100 Strike Rate",
+      "example": "22",
+      "description": "Win rate of the jockey in their last 100 races in percentage."
+    },
+    {
+      "name": "Jockey Last 100 Wins",
+      "example": 22,
+      "description": "Total number of wins by the jockey in their last 100 races."
     }
-
   ]
 }

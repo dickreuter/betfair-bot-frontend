@@ -1,0 +1,19 @@
+/* Align the video differently if needed */
+.my-video {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Custom class to align everything inside the table to the left */
+  .table-left-align, .table-left-align th, .table-left-align td {
+    text-align: left;
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .custom-header {
+    text-align: left;
+    font-size: 1.8rem; /* Adjust as per your design requirements */
+    padding-bottom: 1.3rem;
+    padding-top: 1.3rem;
+  }

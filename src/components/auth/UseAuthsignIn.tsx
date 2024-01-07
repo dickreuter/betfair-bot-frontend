@@ -41,10 +41,9 @@ const useAuthSignIn = () => {
       }
     } catch (err) {
       setIsLoading(false);
-      setError(err.message || "An error occurred. Please try again.");
       return {
         success: false,
-        message: err.message || "An error occurred. Please try again.",
+        message: "Login failed. Please check you have a non-expired username and password.",
       };
     }
   };
