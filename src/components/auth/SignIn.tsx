@@ -1,9 +1,9 @@
 // SignInComponent.js
 import React, { useState } from 'react';
 import { Alert, Button, Snackbar, TextField } from '@mui/material';
-import useAuthSignIn from './useAuthSignIn';  // Make sure to import your custom hook here
 import AuthState from './AuthState';
 import PaymentCards from '../../views/Purchase';
+import useAuthSignIn from './UseAuthsignIn';
 
 const SignInComponent = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
