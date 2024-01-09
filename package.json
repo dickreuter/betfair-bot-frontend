@@ -19,6 +19,7 @@
     "axios": "^1.5.1",
     "bootstrap": "^5.3.2",
     "moment": "^2.29.4",
+    "plotly": "^1.0.6",
     "react": "^18.2.0",
     "react-7-segment-display": "^1.1.1",
     "react-auth-kit": "^2.12.7",
