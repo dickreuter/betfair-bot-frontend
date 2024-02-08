@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:prod": "vite build --mode prodhost",
+    "build:dev": "vite build --mode devhost",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -24,6 +26,7 @@
     "react-7-segment-display": "^1.1.1",
     "react-auth-kit": "^2.12.7",
     "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
     "react-pivottable": "^0.11.0",
     "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.17.0",
