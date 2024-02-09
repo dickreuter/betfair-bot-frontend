@@ -13,3 +13,8 @@
 .pytest_cache
 *.code-workspace
 .env.development
+
+*.xml
+*.iml
+.idea
+

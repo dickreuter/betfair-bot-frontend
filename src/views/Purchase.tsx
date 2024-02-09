@@ -3,6 +3,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Tooltip from '@mui/material/Tooltip';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState } from 'react';
+import ReactGA from 'react-ga4';
 
 function PaymentCards() {
     const [hover, setHover] = useState(false);
@@ -10,12 +11,23 @@ function PaymentCards() {
     const bitcoinAddress = "bc1q6r0l549jefv3rgs7e0jzsdkx9pq9trd2cqyw50"
     const dl_link = "https://onedrive.live.com/download?cid=A3B69BDCC03E82A9&resid=A3B69BDCC03E82A9%21111289&authkey=AEftpEpz8jxnBdI"
 
-    const goToLink = (link: string) => {
+    // Function to handle GA event
+    const handleGAEvent = (category, action, label) => {
+        ReactGA.event({
+            category: category,
+            action: action,
+            label: label,
+        });
+    };
+
+    const goToLink = (link, label = 'Download Link') => {
+        handleGAEvent('Payment Options', 'click', label); // Track clicks with GA
         window.location.href = link;
-    }
+    };
+
     const handleCopy = () => {
-        if (!showBitcoin) setShowBitcoin(true);
-        else setShowBitcoin(false);
+        handleGAEvent('Payment Options', 'copy', 'Bitcoin Address Copied'); // Track Bitcoin address copy with GA
+        setShowBitcoin(!showBitcoin);
     };
 
     return (
